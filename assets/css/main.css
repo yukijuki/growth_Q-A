@@ -1,0 +1,32 @@
+.bg-growth{
+    background-color: #5A47D1;
+}
+.main{
+    margin-top: 3.9rem;
+}
+.side-container{
+    height: 100vh;
+    border-right: solid 0.1px #dcdcdc;
+}
+.side-menu{
+    height: 25%;
+}
+.card{
+    box-shadow: none;
+    border-radius: 0;
+    border-bottom: solid 0.1px #dcdcdc;
+    margin-bottom: 0;
+}
+.card-top{
+    font-weight: 700;
+}
+.card-body h5{
+    font-weight: 700;
+}
+.btn-post{
+    box-shadow: 1.5px 3px 5px 3px rgba(71, 135, 209, 0.5);
+}
+.btn-post:hover{
+    background-color: rgba(90, 71, 209, 0.5);
+    box-shadow: 1px 1px 1px 1px rgba(71, 135, 209, 0.5);
+}
