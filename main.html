@@ -20,6 +20,43 @@
     <link href="./assets/css/main.css" rel="stylesheet" />
 </head>
 <body class="index-page sidebar-collapse">
+
+    <!-- モーダルの設定 -->
+    <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <p class="modal-title font-weight-bold mx-auto" id="exampleModalLabel">QUESTION</p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="">
+                <div class="modal-body d-block">
+                    <label for="text" class="col-form-label font-weight-bold pb-3">Title</label> 
+                    <div><input id="title" name="title" placeholder="タイトルを入力" class="input-title rounded" required="required" type="text" required></div>
+                    <label for="textarea" class="col-form-label pt-4 pb-3 font-weight-bold">Text</label> 
+                    <div><textarea id="text" name="text" type="text" placeholder="質問したい内容を入力..." class="input-text rounded" cols="40" rows="7.5" required></textarea></div>
+                </div>
+                <div class="py-3">
+                    <fieldset>
+                        <input id="item-1" class="radio-inline__input" type="radio" name="accessible-radio" value="item-1" checked="checked"/>
+                        <label class="radio-inline__label" for="item-1">Marketer</label>
+                        <input id="item-2" class="radio-inline__input" type="radio" name="accessible-radio" value="item-2"/>
+                        <label class="radio-inline__label" for="item-2">PdM</label>
+                        <input id="item-3" class="radio-inline__input" type="radio" name="accessible-radio" value="item-3"/>
+                        <label class="radio-inline__label" for="item-3">Analyst</label>
+                    </fieldset>
+                </div>
+                <div class="pt-2 pb-4">
+                    <button type="button" class="mx-auto btn-post btn btn-group-lg bg-growth btn-block text-white" data-toggle="modal" data-target="#modal1">投稿する</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+    <!-- /.modal -->
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-growth fixed-top" color-on-scroll="400">
     <div class="container">
@@ -74,7 +111,8 @@
         <div class="row">
             <div class="side-container col-4 bg-white">
                 <div class="d-flex justify-content-center mt-5">
-                    <button type="submit" class="btn-post btn btn-group-lg bg-growth btn-block text-white">投稿する</button>
+                    <button type="button" class="btn-post btn btn-group-lg bg-growth btn-block text-white" data-toggle="modal" data-target="#modal1">投稿する</button>
+                    
                 </div>
                 <div class="p-5">
                     <ul class="nav flex-column">
@@ -87,13 +125,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <i class="now-ui-icons design_app text-dark"></i>
-                                <p class="d-inline-block text-dark font-weight-bold">マーケター</p>
+                                <p class="d-inline-block text-dark font-weight-bold">Marketer</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <i class="now-ui-icons business_chart-bar-32 text-dark"></i>
-                                <p class="d-inline-block text-dark font-weight-bold">アナリスト</p>
+                                <p class="d-inline-block text-dark font-weight-bold">Analyst</p>
                             </a>
                         </li>
                     </ul>
@@ -104,12 +142,8 @@
                     <div class="card-list">
 
                             <div class="card mx-auto bg-white p-2">
-                                <h4 class="card-top my-2 px-4 text-dark">Q&A一覧</h4>
+                                <h4 class="card-top my-2 px-4 text-dark">Q&A LIST</h4>
                             </div>
-                        <!-- Contact Card ~ #01 -->
-                        <!--{% if posts %}
-                        
-                        {% for post in posts %}-->
         
                             <div class="card mx-auto bg-white p-2" id={{post.pid}}　>
                                 <a href="/mypost/{{post.pid}}" class="card-body">
@@ -135,16 +169,33 @@
                                 </a>
                             </div>
         
-                        <!--{% endfor %}
-        
-                        {% else %}
-                        <div class="text-secondary text-center mt-3">投稿がありません</div>
-                        {% endif %}-->
-        
                     </div>
+                    <nav aria-label="Q&A一覧" class="my-4">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item">
+                                <a class="page-link" href="#">前へ</a>
+                            </li>
+                            <li class="page-item active"aria-current="page">
+                                <a class="page-link" href="#">1<span class="sr-only">(現位置)</span></a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">2</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">3</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">次へ</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="./assets/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
