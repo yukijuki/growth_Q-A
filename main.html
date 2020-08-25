@@ -70,63 +70,81 @@
     </div>
     </nav>
     <!-- End Navbar -->
-    <div class="main row">
-        <div class="side-container col-4 bg-white">
-            <div class="d-flex justify-content-center mt-5">
-                <button type="submit" class="btn-post w-50 btn btn-group-lg bg-growth btn-block text-white">投稿する</button>
+    <div class="main container">
+        <div class="row">
+            <div class="side-container col-4 bg-white">
+                <div class="d-flex justify-content-center mt-5">
+                    <button type="submit" class="btn-post btn btn-group-lg bg-growth btn-block text-white">投稿する</button>
+                </div>
+                <div class="p-5">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                <i class="now-ui-icons design-2_html5 text-dark"></i>
+                                <p class="d-inline-block text-dark font-weight-bold">Pdm</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="now-ui-icons design_app text-dark"></i>
+                                <p class="d-inline-block text-dark font-weight-bold">マーケター</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="now-ui-icons business_chart-bar-32 text-dark"></i>
+                                <p class="d-inline-block text-dark font-weight-bold">アナリスト</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="side-menu text-dark d-flex align-items-center"><p class="mx-auto">プロダクトグロース</p></div>
-            <div class="side-menu text-dark d-flex align-items-center"><p class="mx-auto">プロダクトグロース</p></div>
-            <div class="side-menu text-dark d-flex align-items-center"><p class="mx-auto">プロダクトグロース</p></div>
-            <div class="side-menu text-dark d-flex align-items-center"><p class="mx-auto">プロダクトグロース</p></div>
-        </div>
-        <div class="main-container col-8 bg-white px-0">
-            <div>
-                <div class="card-list">
+            <div class="main-container col-8 bg-white px-0">
+                <div>
+                    <div class="card-list">
 
-                        <div class="card mx-auto bg-white p-2">
-                            <h4 class="card-top my-2 px-4 text-dark">Q&A一覧</h4>
-                        </div>
-                    <!-- Contact Card ~ #01 -->
-                    <!--{% if posts %}
-                    
-                    {% for post in posts %}-->
-    
-                        <div class="card mx-auto bg-white p-2" id={{post.pid}}　>
-                            <a href="/mypost/{{post.pid}}" class="card-body">
-                                <h5 class="card-title px-4 text-dark">ユーザー数を２倍にしてください<!--{{ post.title }}--></h5>
-                                <p class="card-text px-4 text-dark">先日、上司からユーザー数を２倍にしろという無茶振りがありました。自分は、toC事業会社で働いています。どのように進めていけばいいかわかりません。教えていただける方に…<!--{{ post.text }}--></p>
+                            <div class="card mx-auto bg-white p-2">
+                                <h4 class="card-top my-2 px-4 text-dark">Q&A一覧</h4>
+                            </div>
+                        <!-- Contact Card ~ #01 -->
+                        <!--{% if posts %}
+                        
+                        {% for post in posts %}-->
+        
+                            <div class="card mx-auto bg-white p-2" id={{post.pid}}　>
+                                <a href="/mypost/{{post.pid}}" class="card-body">
+                                    <h5 class="card-title px-4 text-dark">ユーザー数を２倍にしてください<!--{{ post.title }}--></h5>
+                                    <p class="card-text px-4 text-dark">先日、上司からユーザー数を２倍にしろという無茶振りがありました。自分は、toC事業会社で働いています。どのように進めていけばいいかわかりません。教えていただける方に…<!--{{ post.text }}--></p>
+                                    
+                                </a>
+                            </div>
                                 
-                            </a>
-                        </div>
-                            
-                        <div class="card mx-auto bg-white p-2" id={{post.pid}}　>
-                            <a href="/mypost/{{post.pid}}" class="card-body">
-                                <h5 class="card-title px-4 text-dark">ユーザー数を２倍にしてください<!--{{ post.title }}--></h5>
-                                <p class="card-text px-4 text-dark">先日、上司からユーザー数を２倍にしろという無茶振りがありました。自分は、toC事業会社で働いています。どのように進めていけばいいかわかりません。教えていただける方に…<!--{{ post.text }}--></p>
-                                
-                            </a>
-                        </div>
+                            <div class="card mx-auto bg-white p-2" id={{post.pid}}　>
+                                <a href="/mypost/{{post.pid}}" class="card-body">
+                                    <h5 class="card-title px-4 text-dark">ユーザー数を２倍にしてください<!--{{ post.title }}--></h5>
+                                    <p class="card-text px-4 text-dark">先日、上司からユーザー数を２倍にしろという無茶振りがありました。自分は、toC事業会社で働いています。どのように進めていけばいいかわかりません。教えていただける方に…<!--{{ post.text }}--></p>
+                                    
+                                </a>
+                            </div>
 
-                        <div class="card mx-auto bg-white p-2" id={{post.pid}}　>
-                            <a href="/mypost/{{post.pid}}" class="card-body">
-                                <h5 class="card-title px-4 text-dark">ユーザー数を２倍にしてください<!--{{ post.title }}--></h5>
-                                <p class="card-text px-4 text-dark">先日、上司からユーザー数を２倍にしろという無茶振りがありました。自分は、toC事業会社で働いています。どのように進めていけばいいかわかりません。教えていただける方に…<!--{{ post.text }}--></p>
-                                
-                            </a>
-                        </div>
-    
-                    <!--{% endfor %}
-    
-                    {% else %}
-                    <div class="text-secondary text-center mt-3">投稿がありません</div>
-                    {% endif %}-->
-    
+                            <div class="card mx-auto bg-white p-2" id={{post.pid}}　>
+                                <a href="/mypost/{{post.pid}}" class="card-body">
+                                    <h5 class="card-title px-4 text-dark">ユーザー数を２倍にしてください<!--{{ post.title }}--></h5>
+                                    <p class="card-text px-4 text-dark">先日、上司からユーザー数を２倍にしろという無茶振りがありました。自分は、toC事業会社で働いています。どのように進めていけばいいかわかりません。教えていただける方に…<!--{{ post.text }}--></p>
+                                    
+                                </a>
+                            </div>
+        
+                        <!--{% endfor %}
+        
+                        {% else %}
+                        <div class="text-secondary text-center mt-3">投稿がありません</div>
+                        {% endif %}-->
+        
+                    </div>
                 </div>
             </div>
         </div>
-        
-        
     </div>
 </body>
 </html>
