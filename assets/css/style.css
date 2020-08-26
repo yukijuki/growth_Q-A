@@ -57,7 +57,7 @@ a:hover{
     box-shadow: 1.5px 3px 5px 3px rgba(71, 135, 209, 0.5);
 }
 
-.btn-post:hover, .btn-comment:hover{
+.btn-post:hover, .btn-post:hover, .btn-post:focus, .btn-comment:hover, .btn-comment:active, .btn-comment:focus{
     background-color: rgba(90, 71, 209, 0.8);
     box-shadow: 1px 1px 1px 1px rgba(71, 135, 209, 0.5);
 }
@@ -73,7 +73,7 @@ a:hover{
     font-size: 1rem;
 }
 
-.btn-like:hover{
+.btn-like:hover, .btn-like:active, .btn-like:focus{
     background-color: rgba(209, 87, 71, 0.5);
     box-shadow: 0px rgba(209, 87, 71, 0.5);
 }
