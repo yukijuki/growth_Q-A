@@ -1,6 +1,15 @@
 .bg-growth{
     background-color: #5A47D1;
 }
+.text-growth{
+    color: #5A47D1;
+}
+.bg-orange{
+    background-color: #D15747;
+}
+.text-orange{
+    color: #D15747;
+}
 a:hover{
     text-decoration: none;
 }
@@ -12,6 +21,8 @@ a:hover{
 }
 .side-container{
     height: 100%;
+    position: sticky;
+    top: 60px;
 }
 .side-menu{
     height: 25%;
@@ -28,15 +39,34 @@ a:hover{
 .card-body h5{
     font-weight: 700;
 }
+
 .btn-post{
     width: 70%;
     font-size: 1rem;
     box-shadow: 1.5px 3px 5px 3px rgba(71, 135, 209, 0.5);
 }
-.btn-post:hover{
-    background-color: rgba(90, 71, 209, 0.5);
+
+.btn-post:hover, .btn-comment:hover{
+    background-color: rgba(90, 71, 209, 0.8);
     box-shadow: 1px 1px 1px 1px rgba(71, 135, 209, 0.5);
 }
+
+.btn-comment{
+    width: 300px;
+    font-size: 1rem;
+    box-shadow: 1.5px 3px 5px 3px rgba(71, 135, 209, 0.8);
+}
+
+.btn-like{
+    width: 80px;
+    font-size: 1rem;
+}
+
+.btn-like:hover{
+    background-color: rgba(209, 87, 71, 0.5);
+    box-shadow: 0px rgba(209, 87, 71, 0.5);
+}
+
 .pagination .page-item .page-link{
     color: #5A47D1;
 }
@@ -44,6 +74,7 @@ a:hover{
     background-color: #5A47D1;
     border-color: #888888;
     color: #FFFFFF;
+    z-index: 0;
 }
 .input-title{
     width: 100%;
@@ -94,10 +125,20 @@ fieldset {
     top: 30px;
     outline: 0;
 }
-.card .arrows-1_minimal-left{
+.fa-comment{
     font-size: 1.2rem;
 }
-.ui-2_chat-round{
-    transform: rotateY( 180deg );
-    font-size: 1.2rem;
+.fa-share{
+    font-size: 1.4rem;
+}
+
+.tabContents {
+    display: none;
+}
+.tabContents.active {
+    display: block;
+}
+.comment-button{
+    position: sticky;
+    bottom: 50px;
 }
