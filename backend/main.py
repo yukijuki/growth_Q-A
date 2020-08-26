@@ -47,7 +47,7 @@ class Like(db.Model):
 # db.drop_all()
 # db.create_all()
 
-@app.route("/test")
+@app.route("/")
 def test():
     return "test verified"
 
@@ -90,7 +90,7 @@ def posts_post():
     category = request.args.get('category')
 
     post = Post(
-        post_id = post_id
+        post_id = post_id,
         email = email, 
         title = title,
         text = text,
@@ -168,7 +168,7 @@ def comments_post():
 
     return  json.dumps(comment)
     
-@app.route("/comments_like", methods=["GET", "POST"])
+@app.route("/comments_like", methods=["POST"])
 def comments_like():
 
     like_id = str(uuid.uuid4())
