@@ -142,15 +142,21 @@
                     <div class="card-list">
 
                             <div class="card mx-auto bg-white p-2">
-                                <h4 class="card-top my-2 px-4 text-dark">Q&A LIST</h4>
+                                <div class="my-2 d-inline-block align-middle"><a href="./main.html"><i class="now-ui-icons arrows-1_minimal-left text-dark pl-3"></i></a></div>
+                                <h4 class="card-top d-inline-block my-2 pl-4 text-dark">POST</h4>
                             </div>
         
                             <div class="card mx-auto bg-white p-2" id={{post.pid}}　>
-                                <a href="./eachpost.html" class="card-body">
+                                <a href="/mypost/{{post.pid}}" class="card-body">
                                     <h5 class="card-title px-4 text-dark">ユーザー数を２倍にしてください<!--{{ post.title }}--></h5>
                                     <p class="card-text px-4 text-dark">先日、上司からユーザー数を２倍にしろという無茶振りがありました。自分は、toC事業会社で働いています。どのように進めていけばいいかわかりません。教えていただける方に…<!--{{ post.text }}--></p>
                                     
                                 </a>
+                            </div>
+
+                            <div class="card mx-auto bg-white p-2">
+                                <div class="my-2 pl-4 d-inline-block align-middle"><a href="javascript:history.back()"><i class="now-ui-icons ui-2_chat-round text-dark pl-3"></i></a></div>
+                                <h4 class="d-inline-block my-2 text-dark">3</h4>
                             </div>
                                 
                             <div class="card mx-auto bg-white p-2" id={{post.pid}}　>

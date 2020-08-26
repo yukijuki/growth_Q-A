@@ -1,7 +1,9 @@
 .bg-growth{
     background-color: #5A47D1;
 }
-
+a:hover{
+    text-decoration: none;
+}
 .main{
     margin-top: 3.9rem;
 }
@@ -91,4 +93,11 @@ fieldset {
     right: 27px;
     top: 30px;
     outline: 0;
+}
+.card .arrows-1_minimal-left{
+    font-size: 1.2rem;
+}
+.ui-2_chat-round{
+    transform: rotateY( 180deg );
+    font-size: 1.2rem;
 }
