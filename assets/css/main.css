@@ -6,11 +6,10 @@
     margin-top: 3.9rem;
 }
 .main-container{
-    border-right: solid 0.1px #dcdcdc;
+    border: solid 0.1px #dcdcdc;
 }
 .side-container{
-    height: 100vh;
-    border-right: solid 0.1px #dcdcdc;
+    height: 100%;
 }
 .side-menu{
     height: 25%;
@@ -28,7 +27,7 @@
     font-weight: 700;
 }
 .btn-post{
-    width: 60%;
+    width: 70%;
     font-size: 1rem;
     box-shadow: 1.5px 3px 5px 3px rgba(71, 135, 209, 0.5);
 }
