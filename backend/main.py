@@ -1,6 +1,6 @@
-from flask import Flask, request, session
+from flask import Flask, request, session, after_this_request, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from flask_cors import CORS, cross_Origin
+from flask_cors import CORS, cross_origin
 import datetime
 import json
 import uuid
@@ -11,6 +11,8 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///site.db"
 app.config["SECRET_KEY"] = "super-secret"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
+app.config["JSON_AS_ASCII"] = False
+
 
 app.debug = True
 db = SQLAlchemy(app)
@@ -56,7 +58,7 @@ def test():
 
 # -------------------Post page-------------------
 @app.route("/posts_get", methods=["GET"])
-@cross_Origin(origin='*')
+@cross_origin(supports_credentials=True)
 def posts_get():
 
     category = request.args.get('category')
@@ -85,14 +87,23 @@ def posts_get():
 
 
 @app.route("/posts_post", methods=["POST"])
-@cross_Origin(supports_credentials=True)
 def posts_post():
 
+    @after_this_request
+    def add_header(response):
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        return response
+
+    print(request.get_data())
+    return jsonify({"language": "パイソン"})
+
     post_id = str(uuid.uuid4())
-    email = request.args.get('email')
-    title = request.args.get('title')
-    text = request.args.get('text')
-    category = request.args.get('category')
+    email = request.json['email']
+    title = request.json['title']
+    text = request.json['text']
+    category = request.json['category']
+
+    pritn("email", email)
 
     post = Post(
         post_id = post_id,
@@ -106,12 +117,11 @@ def posts_post():
     db.session.add(post)
     db.session.commit()
 
-    return  json.dumps(post)
+    #return  json.dumps(post)
 
 # -------------------Comment page-------------------
 
 @app.route("/comments_get", methods=["GET"])
-@cross_Origin(supports_credentials=True)
 def comments_get():
 
     post_id = request.args.get('post_id')
@@ -156,7 +166,6 @@ def comments_get():
 
 
 @app.route("/comments_post", methods=["POST"])
-@cross_Origin(supports_credentials=True)
 def comments_post():
 
     comment_id = str(uuid.uuid4())
@@ -176,7 +185,6 @@ def comments_post():
     return  json.dumps(comment)
     
 @app.route("/comments_like", methods=["POST"])
-@cross_Origin(supports_credentials=True)
 def comments_like():
 
     like_id = str(uuid.uuid4())
