@@ -40,10 +40,15 @@
     margin-left: auto;
 }
 
+.feature-container h2{
+    color: black;
+    font-weight: 700;
+}
+
 hr.divider {
-    max-width: 3.25rem;
+    max-width: 3.5rem;
     border-width: 0.2rem;
-    border-color: #5A47D1;
+    border-color: #ff3b62;
 }
 
 hr {
