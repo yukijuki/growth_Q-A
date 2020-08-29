@@ -1,5 +1,6 @@
 from flask import Flask, request, session
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS, cross_Origin
 import datetime
 import json
 import uuid
@@ -13,6 +14,8 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 
 app.debug = True
 db = SQLAlchemy(app)
+
+CORS(app, support_credentials=True)
 
 # Define Models
 
@@ -53,6 +56,7 @@ def test():
 
 # -------------------Post page-------------------
 @app.route("/posts_get", methods=["GET"])
+@cross_Origin(origin='*')
 def posts_get():
 
     category = request.args.get('category')
@@ -81,6 +85,7 @@ def posts_get():
 
 
 @app.route("/posts_post", methods=["POST"])
+@cross_Origin(supports_credentials=True)
 def posts_post():
 
     post_id = str(uuid.uuid4())
@@ -106,6 +111,7 @@ def posts_post():
 # -------------------Comment page-------------------
 
 @app.route("/comments_get", methods=["GET"])
+@cross_Origin(supports_credentials=True)
 def comments_get():
 
     post_id = request.args.get('post_id')
@@ -150,6 +156,7 @@ def comments_get():
 
 
 @app.route("/comments_post", methods=["POST"])
+@cross_Origin(supports_credentials=True)
 def comments_post():
 
     comment_id = str(uuid.uuid4())
@@ -169,6 +176,7 @@ def comments_post():
     return  json.dumps(comment)
     
 @app.route("/comments_like", methods=["POST"])
+@cross_Origin(supports_credentials=True)
 def comments_like():
 
     like_id = str(uuid.uuid4())
