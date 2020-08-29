@@ -258,6 +258,10 @@ fieldset {
     font-size: 1.4rem;
 }
 
+.fa-chevron-left{
+    font-size: 1.5rem;
+}
+
 .tabContents {
     display: none;
 }
@@ -273,6 +277,7 @@ fieldset {
 
 .top-card-title{
     font-weight: 700;
+    display: inline-block;
 }
 
 /*ナビ*/
