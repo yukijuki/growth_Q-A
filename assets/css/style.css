@@ -44,6 +44,7 @@ p {
     background: linear-gradient(transparent 85%, #ff3b62 85%);
 }
 
+
 /*header*/
 
 .banner_part {
@@ -118,15 +119,9 @@ p {
 }
 
 
-
 /*main*/
 .main_part{
     border-top: solid 0.1px #dcdcdc;
-}
-
-.main-container{
-    border-left: solid 0.1px #dcdcdc;
-    border-right: solid 0.1px #dcdcdc;
 }
 
 .side-container{
@@ -143,6 +138,8 @@ p {
     box-shadow: none;
     border-radius: 0;
     border-bottom: solid 0.1px #dcdcdc;
+    border-left: solid 0.1px #dcdcdc;
+    border-right: solid 0.1px #dcdcdc;
     margin-bottom: 0;
     display: inline-block;
     position: relative;
