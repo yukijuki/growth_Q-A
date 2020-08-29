@@ -12,19 +12,24 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <!-- CSS Files -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="../assets/css/now-ui-kit.css?v=1.3.0" rel="stylesheet" />
     <link href="../assets/css/style.css" rel="stylesheet" />
+    <style>
+        .main-container{
+            margin-top: 62px;
+        }
+    </style>
     <script type="text/javascript" src="../assets/js/comments_get.js"></script>
     <script type="text/javascript" src="../assets/js/comments_post.js"></script>
+    
 </head>
 <body class="index-page sidebar-collapse">
 
-    <!-- モーダルの設定 -->
-    <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
+    <!-- 投稿モーダル -->
+    <div class="modal fade" id="postmodal" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <p class="modal-title font-weight-bold mx-auto" id="exampleModalLabel">QUESTION</p>
+                <p class="modal-title font-weight-bold mx-auto" id="postModalLabel">QUESTION</p>
                 <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -32,182 +37,212 @@
             <form action="">
                 <div class="modal-body d-block">
                     <label for="text" class="col-form-label font-weight-bold pb-3">Title</label> 
-                    <div><input id="title" name="title" placeholder="タイトルを入力" class="input-title rounded" required="required" type="text" required></div>
+                    <div><input id="posttitle" name="posttitle" placeholder="タイトルを入力" class="input-title rounded" required="required" type="text" required></div>
                     <label for="textarea" class="col-form-label pt-4 pb-3 font-weight-bold">Text</label> 
-                    <div><textarea id="text" name="text" type="text" placeholder="質問したい内容を入力..." class="input-text rounded" cols="40" rows="7.5" required></textarea></div>
+                    <div><textarea id="posttext" name="text" type="text" placeholder="質問したい内容を入力..." class="input-text rounded" cols="40" rows="7.5" required></textarea></div>
                 </div>
                 <div class="py-3">
                     <fieldset>
-                        <input id="item-1" class="radio-inline__input" type="radio" name="accessible-radio" value="item-1" checked="checked"/>
-                        <label class="radio-inline__label" for="item-1">Marketer</label>
-                        <input id="item-2" class="radio-inline__input" type="radio" name="accessible-radio" value="item-2"/>
-                        <label class="radio-inline__label" for="item-2">PdM</label>
-                        <input id="item-3" class="radio-inline__input" type="radio" name="accessible-radio" value="item-3"/>
-                        <label class="radio-inline__label" for="item-3">Analyst</label>
+                        <input id="postitem-1" class="radio-inline__input" type="radio" name="accessible-radio" value="postitem-1" checked="checked"/>
+                        <label class="radio-inline__label" for="postitem-1">Marketer</label>
+                        <input id="postitem-2" class="radio-inline__input" type="radio" name="accessible-radio" value="postitem-2"/>
+                        <label class="radio-inline__label" for="postitem-2">PdM</label>
+                        <input id="postitem-3" class="radio-inline__input" type="radio" name="accessible-radio" value="postitem-3"/>
+                        <label class="radio-inline__label" for="postitem-3">Analyst</label>
                     </fieldset>
                 </div>
                 <div class="pt-2 pb-4">
-                    <button type="button" class="mx-auto btn-post btn btn-group-lg bg-growth btn-block text-white" data-toggle="modal" data-target="#modal1">投稿する</button>
+                    <button type="button" class="mx-auto btn-post btn btn-group-lg bg-growth btn-block text-white" data-toggle="modal" data-target="#postmodal">投稿する</button>
                 </div>
             </form>
             </div>
         </div>
     </div>
-    <!-- /.modal -->
-
+    <!-- /.postmodal -->
+    <!-- コメントモーダル -->
+    <div class="modal fade" id="commentmodal" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <p class="modal-title font-weight-bold mx-auto" id="commentModalLabel">QUESTION</p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="">
+                <div class="modal-body d-block">
+                    <label for="text" class="col-form-label font-weight-bold pb-3">Comment Title</label> 
+                    <div><input id="commenttitle" name="commenttitle" placeholder="タイトルを入力" class="input-title rounded" required="required" type="text" required></div>
+                    <label for="textarea" class="col-form-label pt-4 pb-3 font-weight-bold">Comment Text</label> 
+                    <div><textarea id="commenttext" name="commenttext" type="text" placeholder="コメントを入力..." class="input-text rounded" cols="40" rows="7.5" required></textarea></div>
+                </div>
+                <div class="pt-2 pb-4">
+                    <button type="button" class="mx-auto btn-post btn btn-group-lg bg-growth btn-block text-white" data-toggle="modal" data-target="#commentmodal">コメントする</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+    <!-- /.commentmodal -->
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-growth fixed-top" color-on-scroll="400">
-    <div class="container">
-        <div class="navbar-translate">
-        <a class="navbar-brand" href="https://demos.creative-tim.com/now-ui-kit/index.html" rel="tooltip" title="Designed by Invision. Coded by Creative Tim" data-placement="bottom" target="_blank">
-            グロースハックQ&A
-        </a>
-        <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar top-bar"></span>
-            <span class="navbar-toggler-bar middle-bar"></span>
-            <span class="navbar-toggler-bar bottom-bar"></span>
-        </button>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-growth fixed-top" color-on-scroll="400">
+        <div class="container">
+            <div class="navbar-translate">
+            <a class="navbar-brand" href="./home.html">
+                グロースハックQ&A
+            </a>
+            <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-bar top-bar"></span>
+                <span class="navbar-toggler-bar middle-bar"></span>
+                <span class="navbar-toggler-bar bottom-bar"></span>
+            </button>
+            </div>
+            <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="./assets/img/blurred-image-1.jpg">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                <a class="nav-link" href="./home.html" onclick="scrollToDownload()">
+                    <i class="fas fa-home"></i>
+                    <p>Home</p>
+                </a>
+                </li>
+                <li class="nav-item dropdown">
+                <a class="nav-link" href="./about.html">
+                    <i class="fas fa-align-center"></i>
+                    <p>About</p>
+                </a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com/" target="_blank">
+                    <i class="fab fa-twitter"></i>
+                    <p class="d-lg-none d-xl-none">Twitter</p>
+                </a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.facebook.com/" target="_blank">
+                    <i class="fab fa-facebook-square"></i>
+                    <p class="d-lg-none d-xl-none">Facebook</p>
+                </a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="https://www.instagram.com/" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                    <p class="d-lg-none d-xl-none">Instagram</p>
+                </a>
+                </li>
+            </ul>
+            </div>
         </div>
-        <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="./assets/img/blurred-image-1.jpg">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-            <a class="nav-link" href="./home.html" onclick="scrollToDownload()">
-                <i class="now-ui-icons business_bulb-63"></i>
-                <p>Home</p>
-            </a>
-            </li>
-            <li class="nav-item dropdown">
-            <a class="nav-link" href="./about.html">
-                <i class="now-ui-icons travel_info"></i>
-                <p>About</p>
-            </a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank">
-                <i class="fab fa-twitter"></i>
-                <p class="d-lg-none d-xl-none">Twitter</p>
-            </a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank">
-                <i class="fab fa-facebook-square"></i>
-                <p class="d-lg-none d-xl-none">Facebook</p>
-            </a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank">
-                <i class="fab fa-instagram"></i>
-                <p class="d-lg-none d-xl-none">Instagram</p>
-            </a>
-            </li>
-        </ul>
-        </div>
-    </div>
-    </nav>
+        </nav>
+    </header>
     <!-- End Navbar -->
-    <div class="main container">
-        <div class="row px-5">
-            <div class="side-container col-4 bg-white">
-                <div class="d-flex justify-content-center mt-4">
-                    <button type="button" class="btn-post btn btn-group-lg bg-growth btn-block text-white" data-toggle="modal" data-target="#modal1">投稿する</button>
-                    
-                </div>
-                <div class="pt-5 px-3">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">
-                                <i class="now-ui-icons design-2_html5 text-dark pr-2"></i>
-                                <p class="d-inline-block text-dark font-weight-bold">Pdm</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="now-ui-icons design_app text-dark pr-2"></i>
-                                <p class="d-inline-block text-dark font-weight-bold">Marketer</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="now-ui-icons business_chart-bar-32 text-dark pr-2"></i>
-                                <p class="d-inline-block text-dark font-weight-bold">Analyst</p>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="main-container col-8 bg-white px-0">
-                <div>
-                    <div class="card-list">
 
-                            <div class="card mx-auto bg-white p-2">
-                                <div class="my-2 d-inline-block align-middle"><a href="./home.html"><i class="now-ui-icons arrows-1_minimal-left text-dark pl-3"></i></a></div>
-                                <h4 class="card-top d-inline-block my-2 pl-4 text-dark">POST</h4>
-                            </div>
-        
-                            <div class="card mx-auto bg-white p-2" id="#"　>
-                                <a href="#" class="card-body">
-                                    <h5 class="card-title px-4 text-dark">ユーザー数を２倍にしてください</h5>
-                                    <p class="card-text px-4 text-dark">先日、上司からユーザー数を２倍にしろという無茶振りがありました。自分は、toC事業会社で働いています。どのように進めていけばいいかわかりません。教えていただける方に…<!--{{ post.text }}--></p>
-                                    
-                                </a>
-                            </div>
-
-                            <div class="card mx-auto bg-white p-2">
-                                <div class="d-inline-block my-1"><i class="fas fa-comment py-1 pl-4 text-orange"></i></div>
-                                <h4 class="d-inline-block my-auto pl-2 text-orange">3</h4>
-                                <div class="float-right my-1"><i class="fas fa-share py-1 pr-4 text-orange"></i></div>
-                                
-                            </div>
-                                
-                            <div class="card mx-auto bg-white p-2" id="#" >
-                                <a href="#" class="card-body">
-                                    <h5 class="card-title px-4 text-dark">ユーザー数を２倍にしてください</h5>
-                                    <p class="card-text px-4 text-dark">先日、上司からユーザー数を２倍にしろという無茶振りがありました。自分は、toC事業会社で働いています。どのように進めていけばいいかわかりません。教えていただける方に…<!--{{ post.text }}--></p>
-                                </a>
-                                <div class="like-button">
-                                    <button type="button" class="btn-like btn btn-group-lg bg-orange btn-block text-white rounded-pill py-1 mt-0 mr-3 float-right">Like</button>
-                                </div>
-                            </div>
-
-                            <div class="card mx-auto bg-white p-2" id="#"　>
-                                <a href="#" class="card-body">
-                                    <h5 class="card-title px-4 text-dark">ユーザー数を２倍にしてください</h5>
-                                    <p class="card-text px-4 text-dark">先日、上司からユーザー数を２倍にしろという無茶振りがありました。自分は、toC事業会社で働いています。どのように進めていけばいいかわかりません。教えていただける方に…<!--{{ post.text }}--></p>
-                                </a>
-                                <div class="like-button">
-                                    <button type="button" class="btn-like btn btn-group-lg bg-orange btn-block text-white rounded-pill py-1 mt-0 mr-3 float-right">Like</button>
-                                </div>
-                            </div>
+    <section class="main_part">
+        <div class="main">
+            <div class="container">
+                <div class="row px-5">
+                    <div class="side-container col-4 bg-white">
+                        <div class="d-flex justify-content-center mt-5">
+                            <button type="button" class="btn-post btn btn-group-lg bg-growth btn-block text-white" data-toggle="modal" data-target="#postmodal">投稿する</button>
+                        </div>
+                        <div class="pt-5 px-3">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#">
+                                        <i class="fas fa-chart-pie text-orange pr-2"></i>
+                                        <p class="d-inline-block text-dark font-weight-bold">Pdm</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">
+                                        <i class="fas fa-project-diagram text-orange pr-2"></i>
+                                        <p class="d-inline-block text-dark font-weight-bold">Marketer</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">
+                                        <i class="fas fa-chart-line text-orange pr-2"></i>
+                                        <p class="d-inline-block text-dark font-weight-bold">Analyst</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <nav aria-label="Q&A一覧" class="my-4">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item">
-                                <a class="page-link" href="#">前へ</a>
-                            </li>
-                            <li class="page-item active"aria-current="page">
-                                <a class="page-link" href="#">1<span class="sr-only">(現位置)</span></a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">2</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">3</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">次へ</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="comment-button">
-                    <button type="button" class="btn-comment btn btn-group-lg bg-growth btn-block text-white mx-auto rounded-pill">コメントする</button>
+                    <div class="main-container col-8 bg-white px-0">
+                        <div>
+                            <div class="card-list">
+
+                                    <div class="card mx-auto bg-white p-2">
+                                        <div class="my-2 d-inline-block align-middle"><a href="./home.html"><i class="now-ui-icons arrows-1_minimal-left text-dark pl-3"></i></a></div>
+                                        <h4 class="card-top d-inline-block my-2 pl-4 text-dark">質問内容</h4>
+                                    </div>
+                
+                                    <div class="card mx-auto bg-white p-2">
+                                        <a href="#" class="card-body">
+                                            <h5 class="card-title px-4 text-dark">Q.ユーザー数を２倍にしてください</h5>
+                                            <p class="card-text px-4 text-dark">先日、上司からユーザー数を２倍にしろという無茶振りがありました。自分は、toC事業会社で働いています。どのように進めていけばいいかわかりません。教えていただける方に…<!--{{ post.text }}--></p>
+                                            
+                                        </a>
+                                    </div>
+
+                                    <div class="card mx-auto bg-white p-2">
+                                        <div class="d-inline-block my-1"><i class="fas fa-comment py-1 pl-4 text-orange"></i></div>
+                                        <h5 class="d-inline-block my-auto pl-2 text-orange">3</h5>
+                                        <div class="float-right my-1"><i class="fas fa-share py-1 pr-4 text-orange"></i></div>
+                                        
+                                    </div>
+                                        
+                                    <div class="card mx-auto bg-white p-2" id="#" >
+                                        <a href="#" class="card-body">
+                                            <h5 class="card-title px-4 text-dark">ユーザー数を２倍にしてください</h5>
+                                            <p class="card-text px-4 text-dark">先日、上司からユーザー数を２倍にしろという無茶振りがありました。自分は、toC事業会社で働いています。どのように進めていけばいいかわかりません。教えていただける方に…<!--{{ post.text }}--></p>
+                                        </a>
+                                        <div class="like-button">
+                                            <button type="button" class="btn-like btn btn-group-lg bg-orange btn-block text-white rounded-pill py-1 mt-0 mr-3 float-right">Like</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mx-auto bg-white p-2" id="#"　>
+                                        <a href="#" class="card-body">
+                                            <h5 class="card-title px-4 text-dark">ユーザー数を２倍にしてください</h5>
+                                            <p class="card-text px-4 text-dark">先日、上司からユーザー数を２倍にしろという無茶振りがありました。自分は、toC事業会社で働いています。どのように進めていけばいいかわかりません。教えていただける方に…<!--{{ post.text }}--></p>
+                                        </a>
+                                        <div class="like-button">
+                                            <button type="button" class="btn-like btn btn-group-lg bg-orange btn-block text-white rounded-pill py-1 mt-0 mr-3 float-right">Like</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mx-auto bg-white p-2" id="#" >
+                                        <a href="#" class="card-body">
+                                            <h5 class="card-title px-4 text-dark">ユーザー数を２倍にしてください</h5>
+                                            <p class="card-text px-4 text-dark">先日、上司からユーザー数を２倍にしろという無茶振りがありました。自分は、toC事業会社で働いています。どのように進めていけばいいかわかりません。教えていただける方に…<!--{{ post.text }}--></p>
+                                        </a>
+                                        <div class="like-button">
+                                            <button type="button" class="btn-like btn btn-group-lg bg-orange btn-block text-white rounded-pill py-1 mt-0 mr-3 float-right">Like</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mx-auto bg-white p-2" id="comment-card"></div>
+                                    
+
+                                    <div class="comment-button mt-5">
+                                        <button type="button" class="btn-comment btn btn-group-lg bg-growth btn-block text-white mx-auto rounded-pill" data-toggle="modal" data-target="#commentmodal">コメントする</button>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
-    <script type="text/javascript" src="../assets/js/main.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
+    <script type="text/javascript" src="../assets/js/comment.js"></script>
+
 </body>
 </html>
