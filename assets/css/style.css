@@ -7,11 +7,11 @@
 }
 
 .bg-orange{
-    background-color: #D15747;
+    background-color: #ff3b62;
 }
 
 .text-orange{
-    color: #D15747;
+    color: #ff3b62;
 }
 
 a:hover{
@@ -38,6 +38,10 @@ p {
     margin-bottom: 0px;
     color: #fff;
     font-weight: 300;
+}
+
+.under-line {
+    background: linear-gradient(transparent 85%, #ff3b62 85%);
 }
 
 /*header*/
@@ -80,6 +84,7 @@ p {
     font-size: 2.8rem;
     margin-bottom: 32px;
     color: black;
+    display: inline-block;
 }
 
 .banner_part .banner_text h5 {
