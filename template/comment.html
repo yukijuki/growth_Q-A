@@ -17,12 +17,12 @@
 </head>
 <body class="index-page sidebar-collapse">
 
-    <!-- モーダルの設定 -->
-    <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
+    <!-- 投稿モーダル -->
+    <div class="modal fade" id="postmodal" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <p class="modal-title font-weight-bold mx-auto" id="exampleModalLabel">QUESTION</p>
+                <p class="modal-title font-weight-bold mx-auto" id="postModalLabel">QUESTION</p>
                 <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -30,28 +30,53 @@
             <form action="">
                 <div class="modal-body d-block">
                     <label for="text" class="col-form-label font-weight-bold pb-3">Title</label> 
-                    <div><input id="title" name="title" placeholder="タイトルを入力" class="input-title rounded" required="required" type="text" required></div>
+                    <div><input id="posttitle" name="posttitle" placeholder="タイトルを入力" class="input-title rounded" required="required" type="text" required></div>
                     <label for="textarea" class="col-form-label pt-4 pb-3 font-weight-bold">Text</label> 
-                    <div><textarea id="text" name="text" type="text" placeholder="質問したい内容を入力..." class="input-text rounded" cols="40" rows="7.5" required></textarea></div>
+                    <div><textarea id="posttext" name="text" type="text" placeholder="質問したい内容を入力..." class="input-text rounded" cols="40" rows="7.5" required></textarea></div>
                 </div>
                 <div class="py-3">
                     <fieldset>
-                        <input id="item-1" class="radio-inline__input" type="radio" name="accessible-radio" value="item-1" checked="checked"/>
-                        <label class="radio-inline__label" for="item-1">Marketer</label>
-                        <input id="item-2" class="radio-inline__input" type="radio" name="accessible-radio" value="item-2"/>
-                        <label class="radio-inline__label" for="item-2">PdM</label>
-                        <input id="item-3" class="radio-inline__input" type="radio" name="accessible-radio" value="item-3"/>
-                        <label class="radio-inline__label" for="item-3">Analyst</label>
+                        <input id="postitem-1" class="radio-inline__input" type="radio" name="accessible-radio" value="postitem-1" checked="checked"/>
+                        <label class="radio-inline__label" for="postitem-1">Marketer</label>
+                        <input id="postitem-2" class="radio-inline__input" type="radio" name="accessible-radio" value="postitem-2"/>
+                        <label class="radio-inline__label" for="postitem-2">PdM</label>
+                        <input id="postitem-3" class="radio-inline__input" type="radio" name="accessible-radio" value="postitem-3"/>
+                        <label class="radio-inline__label" for="postitem-3">Analyst</label>
                     </fieldset>
                 </div>
                 <div class="pt-2 pb-4">
-                    <button type="button" class="mx-auto btn-post btn btn-group-lg bg-growth btn-block text-white" data-toggle="modal" data-target="#modal1">投稿する</button>
+                    <button type="button" class="mx-auto btn-post btn btn-group-lg bg-growth btn-block text-white" data-toggle="modal" data-target="#postmodal">投稿する</button>
                 </div>
             </form>
             </div>
         </div>
     </div>
-    <!-- /.modal -->
+    <!-- /.postmodal -->
+    <!-- コメントモーダル -->
+    <div class="modal fade" id="commentmodal" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <p class="modal-title font-weight-bold mx-auto" id="commentModalLabel">QUESTION</p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="">
+                <div class="modal-body d-block">
+                    <label for="text" class="col-form-label font-weight-bold pb-3">Comment Title</label> 
+                    <div><input id="commenttitle" name="commenttitle" placeholder="タイトルを入力" class="input-title rounded" required="required" type="text" required></div>
+                    <label for="textarea" class="col-form-label pt-4 pb-3 font-weight-bold">Comment Text</label> 
+                    <div><textarea id="commenttext" name="commenttext" type="text" placeholder="コメントを入力..." class="input-text rounded" cols="40" rows="7.5" required></textarea></div>
+                </div>
+                <div class="pt-2 pb-4">
+                    <button type="button" class="mx-auto btn-post btn btn-group-lg bg-growth btn-block text-white" data-toggle="modal" data-target="#commentmodal">コメントする</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+    <!-- /.commentmodal -->
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-growth fixed-top" color-on-scroll="400">
@@ -107,8 +132,7 @@
         <div class="row px-5">
             <div class="side-container col-4 bg-white">
                 <div class="d-flex justify-content-center mt-4">
-                    <button type="button" class="btn-post btn btn-group-lg bg-growth btn-block text-white" data-toggle="modal" data-target="#modal1">投稿する</button>
-                    
+                    <button type="button" class="btn-post btn btn-group-lg bg-growth btn-block text-white" data-toggle="modal" data-target="#postmodal">投稿する</button>
                 </div>
                 <div class="pt-5 px-3">
                     <ul class="nav flex-column">
@@ -198,7 +222,8 @@
                     </nav>
                 </div>
                 <div class="comment-button">
-                    <button type="button" class="btn-comment btn btn-group-lg bg-growth btn-block text-white mx-auto rounded-pill">コメントする</button>
+                    <button type="button" class="btn-comment btn btn-group-lg bg-growth btn-block text-white mx-auto rounded-pill" data-toggle="modal" data-target="#commentmodal">コメントする</button>
+
                 </div>
             </div>
         </div>
