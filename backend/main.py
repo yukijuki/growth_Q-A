@@ -1,4 +1,4 @@
-from flask import Flask, request, session, after_this_request, jsonify
+from flask import Flask, request, session, after_this_request, jsonify, Response
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS, cross_origin
 import datetime
@@ -17,7 +17,7 @@ app.config["JSON_AS_ASCII"] = False
 app.debug = True
 db = SQLAlchemy(app)
 
-CORS(app, support_credentials=True)
+CORS(app)
 
 # Define Models
 
@@ -58,18 +58,17 @@ def test():
 
 # -------------------Post page-------------------
 @app.route("/posts_get", methods=["GET"])
-@cross_origin(supports_credentials=True)
 def posts_get():
 
     category = request.args.get('category')
 
-    if category == "all":
+    if category != "all":
         posts = Post.query.all()
     else:
-        posts = Post.query.filter_by(category=category).filter_by(is_activae=True).all()
+        posts = Post.query.filter_by(category=category).filter_by(is_active=True).all()
 
     
-    response = []
+    response_post = []
 
     for post in posts:
 
@@ -78,32 +77,21 @@ def posts_get():
             "category": post.category,
             "title": post.title[:20] + " ..",
             "text": post.text[:105] + "...",
-            "created_at": post.created_at
         }
 
-        response.append(post_data)
+        response_post.append(post_data)
 
-    return  json.dumps(response)
+    return  Response(response=json.dumps(response_post), status=200)
 
 
 @app.route("/posts_post", methods=["POST"])
 def posts_post():
-
-    @after_this_request
-    def add_header(response):
-        response.headers['Access-Control-Allow-Origin'] = '*'
-        return response
-
-    print(request.get_data())
-    return jsonify({"language": "パイソン"})
 
     post_id = str(uuid.uuid4())
     email = request.json['email']
     title = request.json['title']
     text = request.json['text']
     category = request.json['category']
-
-    pritn("email", email)
 
     post = Post(
         post_id = post_id,
@@ -113,11 +101,18 @@ def posts_post():
         category = category,
         created_at=datetime.datetime.now()
     )
-
     db.session.add(post)
     db.session.commit()
 
-    #return  json.dumps(post)
+    response_post = {
+        "post_id": post_id,
+        "email": email,
+        "title": title,
+        "text": text,
+        "category": category
+    }
+
+    return  Response(response=json.dumps(response_post), status=200)
 
 # -------------------Comment page-------------------
 
