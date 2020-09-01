@@ -15,8 +15,8 @@ $('.jscroll').jscroll(jscrollOption);
 
 //comment生成
 function createComment() {
-    var comment_a = document.createElement("a");
-    comment_a.className = "card-body";
+    var comment_a = document.createElement("div");
+    comment_a.className = "card-body px-1 pb-0";
     comment_a.id = "comment-card-body";
     comment_a.href = "#";
     document.getElementById("comment-card").appendChild(comment_a);
