@@ -51,4 +51,3 @@ function createComment() {
     var like_buttontext = document.createTextNode("Like");
     document.getElementById("like-button").appendChild(like_buttontext);
 }
-createComment();
