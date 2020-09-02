@@ -37,6 +37,7 @@ class Comment(db.Model):
     comment_id = db.Column(db.String(80), nullable=False, unique=True)
     email = db.Column(db.String(80))
     post_id = db.Column(db.String(80), nullable=False)
+    name = db.Column(db.String(80), nullable=False)
     text = db.Column(db.Text(), nullable=False)
     is_active = db.Column(db.Boolean, default=True)
     created_at = db.Column(db.DateTime())
@@ -164,12 +165,14 @@ def comments_get():
 def comments_post():
 
     comment_id = str(uuid.uuid4())
-    post_id = request.args.get('post_id')
-    text = request.args.get('text')
+    text = request.json['text']
+    post_id = request.json['post_id']
+    name = request.json['name']
 
     comment = Comment(
         comment_id = comment_id,
         post_id = post_id,
+        name = name,
         text = text,
         created_at=datetime.datetime.now()
     )
@@ -177,7 +180,14 @@ def comments_post():
     db.session.add(comment)
     db.session.commit()
 
-    return  json.dumps(comment)
+    response_comment = {
+        "comment_id": comment_id,
+        "post_id": post_id,
+        "name": name,
+        "text": text
+    }
+
+    return Response(response=json.dumps(response_comment), status=200)
     
 @app.route("/comments_like", methods=["POST"])
 def comments_like():
