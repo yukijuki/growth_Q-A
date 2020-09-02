@@ -13,6 +13,20 @@ var jscrollOption = {
 
 $('.jscroll').jscroll(jscrollOption);
 
+//sidebar
+$(function () {
+    $('.sidebar-icon2').hide()
+    $('.sidebar-icon1').on('click', function () {
+        $('.sidebar-icon1').hide();
+        $('.sidebar-icon2').show();
+    });
+    $('.sidebar-icon2').on('click', function () {
+        $('.sidebar-icon2').hide();
+        $('.sidebar-icon1').show();
+    });
+});
+
+
 //comment生成
 function createComment() {
     var comment_a = document.createElement("div");
