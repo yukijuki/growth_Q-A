@@ -64,7 +64,7 @@ def posts_get():
     category = request.args.get('category')
 
     if category == "All":
-        posts = Post.query.all()
+        posts = Post.query.order_by(Post.created_at.desc()).all()
     else:
         posts = Post.query.filter_by(category=category).filter_by(is_active=True).order_by(Post.created_at.desc()).all()
 
@@ -123,42 +123,37 @@ def comments_get():
     post_id = request.args.get('post_id')
 
     post = Post.query.filter_by(post_id=post_id).filter_by(is_active=True).first()
-    comments = Comment.query.filter_by(post_id=post_id).filter_by(is_active=True).all()
+    comments = Comment.query.filter_by(post_id=post_id).filter_by(is_active=True).order_by(Comment.created_at.desc()).all()
 
     response = []
 
     post = {
-
-        "post_id": post.post_id,
-        "category": post.category,
         "title": post.title,
-        "text": post.text,
-        "created_at": post.created_at
-
+        "text": post.text
     }
 
     response.append(post)
 
     for comment in comments:
-        like = Like.query.filter_by(comment_id=comment.comment_id).filter_by(like=True).all()
-        like_bool = Like.query.filter_by(comment_id=comment.comment_id).filter_by(like=True).filter_by(user_id=user_id).first()
+        # like = Like.query.filter_by(comment_id=comment.comment_id).filter_by(like=True).all()
+        # like_bool = Like.query.filter_by(comment_id=comment.comment_id).filter_by(like=True).filter_by(user_id=user_id).first()
         
-        if like_bool:
-            like_bool_judge = True
+        # if like_bool:
+        #     like_bool_judge = True
 
         comment_data = {
 
             "comment_id": comment.comment_id,
-            "text": comment.text,
-            "like": len(likes),
-            "like": like_bool_judge,
-            "created_at": comment.created_at
+            "name": comment.name,
+            "text": comment.text
+            # "like": len(likes),
+            # "likes": like_bool_judge
 
         }
 
         response.append(comment_data)
 
-    return  json.dumps(response)
+    return  Response(response=json.dumps(response), status=200)
 
 
 @app.route("/comments_post", methods=["POST"])
@@ -176,13 +171,13 @@ def comments_post():
         text = text,
         created_at=datetime.datetime.now()
     )
+    print(comment)
 
     db.session.add(comment)
     db.session.commit()
 
     response_comment = {
         "comment_id": comment_id,
-        "post_id": post_id,
         "name": name,
         "text": text
     }

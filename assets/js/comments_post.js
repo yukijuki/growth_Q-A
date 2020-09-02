@@ -1,10 +1,11 @@
 
-function comments_post_api(text, post_id) {
+function comments_post_api(post_id, text, name) {
     const url = "http://127.0.0.1:5000/comments_post";
     
     var data = {
         "post_id": post_id,
-        "text": text
+        "text": text,
+        "name": name
     }
 
     return fetch(url, {
@@ -26,28 +27,42 @@ function comments_post_api(text, post_id) {
 
 function createComment(response){
 
-    var div = document.createElement("div");
-    div.className = "card mx-auto bg-white p-2 et_pb_module";
-    div.id = response["comment_id"];
-    document.getElementById("comment").appendChild(div);
+    var comment_a = document.createElement("div");
+    comment_a.className = "card-body px-1 pb-0";
+    comment_a.id = response["comment_id"];
+    document.getElementById("comment-card").appendChild(comment_a);
 
-    var a = document.createElement("a");
-    a.className = "card-body secList";
-    a.id = "question-card-body"+response["comment_id"];
-    a.href = "#";	
-    document.getElementById(response["comment_id"]).appendChild(a);
+    var comment_h5 = document.createElement("h5");
+    comment_h5.className = "card-title px-4 text-dark";
+    comment_h5.id = "comment-card-title"+response["comment_id"];
+    document.getElementById(response["comment_id"]).appendChild(comment_h5);
 
-    var p = document.createElement("p");
-    p.className = "card-text px-4 text-dark";
-    p.id = "question-card-text"+response["comment_id"];
-    document.getElementById("question-card-body"+response["comment_id"]).appendChild(p);
+    var comment_h5title = document.createTextNode(response["name"]);
+    document.getElementById("comment-card-title"+response["comment_id"]).appendChild(comment_h5title);
 
-    var ptext = document.createTextNode(response["text"]);
-    document.getElementById("question-card-text"+response["comment_id"]).appendChild(ptext);
+    var comment_p = document.createElement("p");
+    comment_p.className = "card-text px-4 text-dark";
+    comment_p.id = "comment-card-text"+response["comment_id"];
+    document.getElementById("comment-card-body"+response["comment_id"]).appendChild(comment_p);
+
+    var comment_ptext = document.createTextNode(response["text"]);
+    document.getElementById("comment-card-text"+response["comment_id"]).appendChild(comment_ptext);
+
+    var comment_div = document.createElement("div");
+    comment_div.className = "like-button-area";
+    comment_div.id = "like-button-area"+response["comment_id"];
+    document.getElementById("comment-card").appendChild(comment_div);
+
+    var like_button = document.createElement("button");
+    like_button.className = "btn-like btn btn-group-lg bg-orange btn-block text-white rounded-pill py-1 mt-0 mr-3 float-right";
+    like_button.id = "like-button"+response["comment_id"];
+    document.getElementById("like-button-area"+response["comment_id"]).appendChild(like_button);
+
+    var like_buttontext = document.createTextNode("Like 1");
+    document.getElementById("like-button"+response["comment_id"]).appendChild(like_buttontext);
 }
 
 async function comment_post_func() {
-
 
     /// Get parameter for category    
     var params = {};
@@ -62,11 +77,13 @@ async function comment_post_func() {
     const post_id = params['post_id']
     console.log(post_id)
 
+    const name = document.getElementById("nickname").value;
     const text = document.getElementById("commenttext").value;
+
   
     console.log("text", text)
 
-    const response = await comments_post_api(post_id, text)
+    const response = await comments_post_api(post_id, text, name)
     console.log("APIresponse", response);
     createComment(response);
 }
