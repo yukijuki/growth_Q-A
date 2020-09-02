@@ -62,10 +62,10 @@ def posts_get():
 
     category = request.args.get('category')
 
-    if category != "all":
+    if not category:
         posts = Post.query.all()
     else:
-        posts = Post.query.filter_by(category=category).filter_by(is_active=True).all()
+        posts = Post.query.filter_by(category=category).filter_by(is_active=True).order_by(Post.created_at.desc()).all()
 
     
     response_post = []
