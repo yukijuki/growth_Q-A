@@ -64,9 +64,9 @@ def posts_get():
     category = request.args.get('category')
 
     if category == "All":
-        posts = Post.query.order_by(desc(Post.created_at)).all()
+        posts = Post.query.order_by(Post.created_at.desc()).all()
     else:
-        posts = Post.query.filter_by(category=category).filter_by(is_active=True).order_by(desc(Post.created_at)).all()
+        posts = Post.query.filter_by(category=category).filter_by(is_active=True).order_by(Post.created_at.desc()).all()
 
     
     response_post = []
