@@ -151,8 +151,7 @@ def comments_get():
             "comment_id": comment.comment_id,
             "text": comment.text,
             "like": len(likes),
-            "like": like_bool_judge,
-            "created_at": comment.created_at
+            "likes": like_bool_judge
 
         }
 
@@ -182,7 +181,6 @@ def comments_post():
 
     response_comment = {
         "comment_id": comment_id,
-        "post_id": post_id,
         "name": name,
         "text": text
     }
