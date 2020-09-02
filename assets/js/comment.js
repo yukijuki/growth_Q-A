@@ -13,6 +13,20 @@ var jscrollOption = {
 
 $('.jscroll').jscroll(jscrollOption);
 
+//sidebar
+$(function () {
+    $('.sidebar-icon2').hide()
+    $('.sidebar-icon1').on('click', function () {
+        $('.sidebar-icon1').hide();
+        $('.sidebar-icon2').show();
+    });
+    $('.sidebar-icon2').on('click', function () {
+        $('.sidebar-icon2').hide();
+        $('.sidebar-icon1').show();
+    });
+});
+
+
 //comment生成
 function createComment() {
     var comment_a = document.createElement("div");
@@ -51,3 +65,7 @@ function createComment() {
     var like_buttontext = document.createTextNode("Like");
     document.getElementById("like-button").appendChild(like_buttontext);
 }
+<<<<<<< HEAD
+createComment();
+=======
+>>>>>>> 2765b38b99758d9ebbc7674b3e3ae2442c9aa008
