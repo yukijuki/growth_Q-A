@@ -63,7 +63,7 @@ def posts_get():
 
     category = request.args.get('category')
 
-    if not category:
+    if category == "All":
         posts = Post.query.all()
     else:
         posts = Post.query.filter_by(category=category).filter_by(is_active=True).order_by(Post.created_at.desc()).all()
@@ -122,8 +122,8 @@ def comments_get():
 
     post_id = request.args.get('post_id')
 
-    post = Post.query.filter_by(post_id=post_id).filter_by(is_activae=True).first()
-    comments = Comment.query.filter_by(post_id=post_id).filter_by(is_activae=True).all()
+    post = Post.query.filter_by(post_id=post_id).filter_by(is_active=True).first()
+    comments = Comment.query.filter_by(post_id=post_id).filter_by(is_active=True).all()
 
     response = []
 
