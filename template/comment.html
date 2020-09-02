@@ -20,41 +20,43 @@
 </head>
 <body class="index-page sidebar-collapse">
 
-    <!-- 投稿モーダル -->
-    <div class="modal fade" id="postmodal" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
+    <!-- モーダルの設定 -->
+    <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <p class="modal-title font-weight-bold mx-auto" id="postModalLabel">QUESTION</p>
+                <p class="modal-title font-weight-bold mx-auto" id="exampleModalLabel">QUESTION</p>
                 <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <form action="">
                 <div class="modal-body d-block">
-                    <label for="text" class="col-form-label font-weight-bold pb-3">Title</label> 
-                    <div><input id="posttitle" name="posttitle" placeholder="タイトルを入力" class="input-title rounded" required="required" type="text" required></div>
-                    <label for="textarea" class="col-form-label pt-4 pb-3 font-weight-bold">Text</label> 
-                    <div><textarea id="posttext" name="text" type="text" placeholder="質問したい内容を入力..." class="input-text rounded" cols="40" rows="7.5" required></textarea></div>
+                    <label for="text" class="col-form-label font-weight-bold pb-3">Email*</label> 
+                    <div><input id="email" name="email" placeholder="通知を受け取る場合はemailを入力" class="input-title rounded" required="required" type="text" required></div>
+                    <label for="text" class="col-form-label font-weight-bold pb-3">Title*</label> 
+                    <div><input id="title" name="title" placeholder="タイトルを入力" class="input-title rounded" required="required" type="text" required></div>
+                    <label for="textarea" class="col-form-label pt-4 pb-3 font-weight-bold">Text*</label> 
+                    <div><textarea id="text" name="text" type="text" placeholder="質問したい内容を入力..." class="input-text rounded" cols="40" rows="7.5" required></textarea></div>
                 </div>
                 <div class="py-3">
                     <fieldset>
-                        <input id="postitem-1" class="radio-inline__input" type="radio" name="accessible-radio" value="postitem-1" checked="checked"/>
-                        <label class="radio-inline__label" for="postitem-1">Marketer</label>
-                        <input id="postitem-2" class="radio-inline__input" type="radio" name="accessible-radio" value="postitem-2"/>
-                        <label class="radio-inline__label" for="postitem-2">PdM</label>
-                        <input id="postitem-3" class="radio-inline__input" type="radio" name="accessible-radio" value="postitem-3"/>
-                        <label class="radio-inline__label" for="postitem-3">Analyst</label>
+                        <input id="Marketer" class="radio-inline__input" type="radio" name="accessible-radio" value="item-1" checked="checked"/>
+                        <label class="radio-inline__label" for="Marketer">Marketer</label>
+                        <input id="PdM" class="radio-inline__input" type="radio" name="accessible-radio" value="item-2"/>
+                        <label class="radio-inline__label" for="PdM">PdM</label>
+                        <input id="Data Analyst" class="radio-inline__input" type="radio" name="accessible-radio" value="item-3"/>
+                        <label class="radio-inline__label" for="Data Analyst">Data Analyst</label>
                     </fieldset>
                 </div>
                 <div class="pt-2 pb-5">
-                    <button type="button" class="mx-auto btn-post btn btn-group-lg bg-growth btn-block text-white" data-toggle="modal" data-target="#postmodal" onclick="posts_post_func();">投稿する</button>
+                    <button type="button" class="mx-auto btn-post btn btn-group-lg bg-growth btn-block text-white" data-toggle="modal" data-target="#modal1" onclick="posts_post_func();">投稿する</button>
                 </div>
             </form>
             </div>
         </div>
     </div>
-    <!-- /.postmodal -->
+    <!-- /.modal -->
     
     <!-- コメントモーダル -->
     <div class="modal fade" id="commentmodal" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
