@@ -76,7 +76,7 @@
                     <div><textarea id="commenttext" name="commenttext" type="text" placeholder="本文を入力..." class="input-text rounded" cols="40" rows="7.5" required></textarea></div>
                 </div>
                 <div class="pt-2 pb-5">
-                    <button type="button" class="mx-auto btn-post btn btn-group-lg bg-growth btn-block text-white" data-toggle="modal" data-target="#commentmodal">コメントする</button>
+                    <button type="button" class="mx-auto btn-post btn btn-group-lg bg-growth btn-block text-white" data-toggle="modal" data-target="#commentmodal" onclick="comments_post_func();">コメントする</button>
                 </div>
             </form>
             </div>
@@ -183,7 +183,7 @@
                 <div class="row px-5">
                     <div class="side-container col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 bg-white">
                         <div class="d-flex justify-content-center mt-5">
-                            <button type="button" class="btn-post btn btn-group-lg bg-growth btn-block text-white" data-toggle="modal" data-target="#modal1">投稿する</button>
+                            <button type="button" class="btn-post btn btn-group-lg bg-growth btn-block text-white" data-toggle="modal" data-target="#modal1" onclick="posts_post_api();">投稿する</button>
                         </div>
                         <div class="py-5 px-3">
                             <ul class="nav flex-column">
@@ -225,8 +225,8 @@
                 
                                     <div class="card mx-auto bg-white p-2">
                                         <div class="card-body px-1">
-                                            <h5 class="card-title px-4 text-dark">Q.ユーザー数を２倍にしてください</h5>
-                                            <p class="card-text px-4 text-dark">先日、上司からユーザー数を２倍にしろという無茶振りがありました。自分は、toC事業会社で働いています。どのように進めていけばいいかわかりません。教えていただける方に…<!--{{ post.text }}--></p>
+                                            <h5 class="card-title px-4 text-dark" id="comment-text"></h5>
+                                            <p class="card-text px-4 text-dark" id="comment-p"></p>
                                         </div>
                                     </div>
 
@@ -235,23 +235,20 @@
                                         <h5 class="d-inline-block my-auto pl-2 text-orange">3</h5>
                                         <div class="float-right my-1"><i class="fas fa-share py-1 pr-4 text-orange"></i></div>
                                     </div>
-                                    
-                                    <div>
-                                        <div id="comment-card"></div>
+                                    <div id="comment-card"></div>
 
-                                        <div id="comment">
-                                            <div class="card mx-auto bg-white p-2" id="#" >
-                                                <div class="card-body px-1 pb-0">
-                                                    <h5 class="card-title px-4 text-dark">コメントテスト</h5>
-                                                    <p class="card-text px-4 text-dark">先日、上司からユーザー数を２倍にしろという無茶振りがありました。自分は、toC事業会社で働いています。どのように進めていけばいいかわかりません。教えていただける方に…<!--{{ post.text }}--></p>
-                                                </div>
-                                                <div class="like-button">
-                                                    <button type="button" class="btn-like btn btn-group-lg bg-orange btn-block text-white rounded-pill py-1 mt-0 mr-3 float-right">Like</button>
-                                                </div>
+                                    <div id="comment">
+                                        <!--
+                                        <div class="card mx-auto bg-white p-2" id="#" >
+                                            <div class="card-body px-1 pb-0">
+                                                <h5 class="card-title px-4 text-dark">コメントテスト</h5>
+                                                <p class="card-text px-4 text-dark">先日、上司からユーザー数を２倍にしろという無茶振りがありました。自分は、toC事業会社で働いています。どのように進めていけばいいかわかりません。教えていただける方に…</p>
                                             </div>
-                                        </div>
-                                        <!--comment 生成-->
-                                    </div>  
+                                            <div class="like-button">
+                                                <button type="button" class="btn-like btn btn-group-lg bg-orange btn-block text-white rounded-pill py-1 mt-0 mr-3 float-right">Like</button>
+                                            </div>
+                                        </div>-->
+                                    </div>
                                     
 
                                     <div class="comment-button mt-5">

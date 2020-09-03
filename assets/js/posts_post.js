@@ -31,7 +31,7 @@ function createPost(response){
     var div = document.createElement("div");
     div.className = "card mx-auto bg-white p-2 et_pb_module";
     div.id = response["post_id"];
-    document.getElementById("card-list-home").appendChild(div);
+    document.getElementById("apost").appendChild(div);
 
     var a = document.createElement("a");
     a.className = "card-body secList";
@@ -82,5 +82,6 @@ async function posts_post_func() {
 
     const response = await posts_post_api(email, title, text, category)
     console.log("APIresponse", response);
+
     createPost(response);
 }

@@ -28,17 +28,24 @@ function comments_post_api(post_id, text, name) {
 function createComment(response){
 
     var comment_a = document.createElement("div");
-    comment_a.className = "card-body px-1 pb-0";
+    comment_a.className = "card mx-auto bg-white p-2";
     comment_a.id = response["comment_id"];
     document.getElementById("comment-card").appendChild(comment_a);
+
+    var div = document.createElement("div");
+    div.className = "card-body px-1 pb-0";
+    div.id = "comment-card-body"+response["comment_id"];
+    document.getElementById(response["comment_id"]).appendChild(div);
+
 
     var comment_h5 = document.createElement("h5");
     comment_h5.className = "card-title px-4 text-dark";
     comment_h5.id = "comment-card-title"+response["comment_id"];
-    document.getElementById(response["comment_id"]).appendChild(comment_h5);
+    document.getElementById("comment-card-body" + response["comment_id"]).appendChild(comment_h5);
 
     var comment_h5title = document.createTextNode(response["name"]);
     document.getElementById("comment-card-title"+response["comment_id"]).appendChild(comment_h5title);
+
 
     var comment_p = document.createElement("p");
     comment_p.className = "card-text px-4 text-dark";
@@ -48,42 +55,44 @@ function createComment(response){
     var comment_ptext = document.createTextNode(response["text"]);
     document.getElementById("comment-card-text"+response["comment_id"]).appendChild(comment_ptext);
 
+
     var comment_div = document.createElement("div");
     comment_div.className = "like-button-area";
     comment_div.id = "like-button-area"+response["comment_id"];
-    document.getElementById("comment-card").appendChild(comment_div);
+    document.getElementById(response["comment_id"]).appendChild(comment_div);
 
     var like_button = document.createElement("button");
     like_button.className = "btn-like btn btn-group-lg bg-orange btn-block text-white rounded-pill py-1 mt-0 mr-3 float-right";
     like_button.id = "like-button"+response["comment_id"];
     document.getElementById("like-button-area"+response["comment_id"]).appendChild(like_button);
 
-    var like_buttontext = document.createTextNode("Like 1");
+    var like_buttontext = document.createTextNode("Like"); //like num add here
     document.getElementById("like-button"+response["comment_id"]).appendChild(like_buttontext);
 }
 
-async function comment_post_func() {
+async function comments_post_func() {
 
     /// Get parameter for category    
     var params = {};
     var query = window.location.href.split("?")[1];
-    if(query){
+    if(query) {
         var rawParams = query.split('&');
         rawParams.forEach(function(prm,i){
             var kv = prm.split('=');
             params[kv[0]] = kv[1];
         });
     }
-    const post_id = params['post_id']
-    console.log(post_id)
+
+    const post_id = params['post_id'];
+    console.log(post_id);
 
     const name = document.getElementById("nickname").value;
     const text = document.getElementById("commenttext").value;
 
-  
-    console.log("text", text)
+    console.log(post_id, text, name);
 
-    const response = await comments_post_api(post_id, text, name)
+    const response = await comments_post_api(post_id, text, name);
     console.log("APIresponse", response);
+
     createComment(response);
 }
