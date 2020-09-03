@@ -90,7 +90,6 @@ async function comments_get_func() {
     document.getElementById("comment-p").appendChild(text);
 
     for (var i = 1; i < response.length; i++) {
-        console.log("icm", i)
         createComments(response[i]);
     }
 }

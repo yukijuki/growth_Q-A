@@ -67,14 +67,16 @@ async function posts_get_func() {
                 params[kv[0]] = kv[1];
             });
         }
-        const category = params['category']
-        console.log(category)
+        var category = params['category']
+        if (category == undefined) {
+            category = "All"
+        }
+        console.log("current category is", category)
 
         const response = await posts_get_api(category)
         console.log("APIresponse", response);
 
         for (var i = 0; i < response.length; i++) {
-            console.log("icm", i)
             createPosts(response[i]);
         }
     }
