@@ -273,6 +273,7 @@ fieldset {
 
 .navbar a:not(.btn):not(.dropdown-item) {
     color: #FFFFFF;
+    font-size: 1.2rem;
 }
 
 .navbar .navbar-nav .nav-link:not(.btn) i.now-ui-icons {
