@@ -26,8 +26,24 @@ function like_post_api(uuid, comment_id) {
 
 function likePost(response, id){
 
-    var title = document.createTextNode(response["comment_id"]);
-    document.getElementById(id).appendChild(title);
+    var like_text = document.getElementById(id).innerHTML;
+
+    var text = like_text.slice(0, -1); //except for lastword
+    var num = like_text.slice(-1); //lastword
+
+    var add_num;
+    if (response["action"] == "delete"){
+        add_num = Number(num) - 1
+    } else {
+        add_num = Number(num) + 1
+    }
+
+    var title = document.createTextNode(text + add_num);
+
+    var target = document.getElementById(id)
+    target.innerHTML = text + add_num
+    //like_button.className = "btn-like btn btn-group-lg btn-unlike btn-block text-white rounded-pill py-1 mt-0 mr-3 float-right";
+
 
 }
 
@@ -40,6 +56,6 @@ async function like_post_func(id) {
 
     const response = await like_post_api(uuid, comment_id)
     console.log("APIresponse", response);
-
-    //likePost(response, id);
+    //location.reload();
+    likePost(response, id);
 }
