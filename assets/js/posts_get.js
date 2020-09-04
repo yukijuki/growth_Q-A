@@ -55,6 +55,8 @@ function createPosts(response){
 
 async function posts_get_func() {
 
+    login_verification();
+
     if (document.getElementById("card-list-home")) {
 
         /// Get parameter for category    

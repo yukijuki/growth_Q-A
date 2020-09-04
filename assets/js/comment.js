@@ -27,11 +27,7 @@ $(function () {
 });
 
 
-<<<<<<< HEAD
-// //comment生成
-=======
 //comment生成
->>>>>>> 94f93c3bf572b06f58e3cedb8af6c7130fa36a66
 // function createComment() {
 //     var comment_a = document.createElement("div");
 //     comment_a.className = "card-body px-1 pb-0";
