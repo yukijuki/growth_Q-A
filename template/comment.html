@@ -34,12 +34,12 @@
             </div>
             <form action="">
                 <div class="modal-body d-block">
-                    <label for="text" class="col-form-label font-weight-bold pb-3">Email*</label> 
-                    <div><input id="email" name="email" placeholder="通知を受け取る場合はemailを入力" class="input-title rounded" required="required" type="text" required></div>
-                    <label for="text" class="col-form-label font-weight-bold pb-3">Title*</label> 
-                    <div><input id="title" name="title" placeholder="タイトルを入力" class="input-title rounded" required="required" type="text" required></div>
-                    <label for="textarea" class="col-form-label pt-4 pb-3 font-weight-bold">Text*</label> 
-                    <div><textarea id="text" name="text" type="text" placeholder="質問したい内容を入力..." class="input-text rounded" cols="40" rows="7.5" required></textarea></div>
+                    <label for="text" class="col-form-label font-weight-bold pb-3">メールアドレス</label> 
+                    <div><input id="email" name="email" placeholder="コメントが来た際に通知を受け取る場合はemailを入力" class="input-title rounded" required="required" type="text" required></div>
+                    <label for="text" class="col-form-label font-weight-bold pb-3">タイトル</label> 
+                    <div><input id="title" name="title" placeholder="質問のタイトルを入力" class="input-title rounded" required="required" type="text" required></div>
+                    <label for="textarea" class="col-form-label pt-4 pb-3 font-weight-bold">本文</label> 
+                    <div><textarea id="text" name="text" type="text" placeholder="質問の本文を入力..." class="input-text rounded" cols="40" rows="7.5" required></textarea></div>
                 </div>
                 <div class="py-3">
                     <fieldset>
@@ -48,7 +48,7 @@
                         <input id="PdM" class="radio-inline__input" type="radio" name="accessible-radio" value="item-2"/>
                         <label class="radio-inline__label" for="PdM">PdM</label>
                         <input id="Data Analyst" class="radio-inline__input" type="radio" name="accessible-radio" value="item-3"/>
-                        <label class="radio-inline__label" for="Data Analyst">Data Analyst</label>
+                        <label class="radio-inline__label" for="Data Analyst">Analyst</label>
                     </fieldset>
                 </div>
                 <div class="pt-2 pb-5">
@@ -72,9 +72,9 @@
             </div>
             <form action="">
                 <div class="modal-body d-block">
-                    <label for="text" class="col-form-label font-weight-bold pb-3">ニックネーム*</label> 
-                    <div><input id="nickname" name="nickname" placeholder="タイトルを入力" class="input-title rounded" required="required" type="text" required></div>
-                    <label for="textarea" class="col-form-label pt-4 pb-3 font-weight-bold">本文*</label> 
+                    <label for="text" class="col-form-label font-weight-bold pb-3">ニックネーム</label> 
+                    <div><input id="nickname" name="nickname" placeholder="ニックネームを入力" class="input-title rounded" required="required" type="text" required></div>
+                    <label for="textarea" class="col-form-label pt-4 pb-3 font-weight-bold">本文</label> 
                     <div><textarea id="commenttext" name="commenttext" type="text" placeholder="本文を入力..." class="input-text rounded" cols="40" rows="7.5" required></textarea></div>
                 </div>
                 <div class="pt-2 pb-5">
@@ -114,23 +114,23 @@
                 </a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com/" target="_blank">
-                    <i class="fab fa-twitter"></i>
-                    <p class="d-lg-none d-xl-none">Twitter</p>
-                </a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.facebook.com/" target="_blank">
-                    <i class="fab fa-facebook-square"></i>
-                    <p class="d-lg-none d-xl-none">Facebook</p>
-                </a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="https://www.instagram.com/" target="_blank">
-                    <i class="fab fa-instagram"></i>
-                    <p class="d-lg-none d-xl-none">Instagram</p>
-                </a>
-                </li>
+                    <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com/GrowthConf_" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                        <p class="d-lg-none d-xl-none">Twitter</p>
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.facebook.com/" target="_blank">
+                        <i class="fab fa-facebook-square"></i>
+                        <p class="d-lg-none d-xl-none">Facebook</p>
+                    </a>
+                    </li>
+                    <!-- <li class="nav-item">
+                    <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="https://www.instagram.com/" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                        <p class="d-lg-none d-xl-none">Instagram</p>
+                    </a>
+                    </li> -->
             </ul>
             </div>
         </div>
@@ -164,14 +164,14 @@
             </li>
             <li>
                 <a class="nav-link" href="./home.html?category=Marketer">
-                    <i class="fas fa-project-diagram text-white pr-2"></i>
+                    <i class="fas fa-crosshairs text-white pr-2"></i>
                     <p class="d-inline-block text-white font-weight-bold">Marketer</p>
                 </a>
             </li>
             <li>
                 <a class="nav-link" href="./home.html?category=Data Analyst">
                     <i class="fas fa-chart-line text-white pr-2"></i>
-                    <p class="d-inline-block text-white font-weight-bold">Data Analyst</p>
+                    <p class="d-inline-block text-white font-weight-bold">Analyst</p>
                 </a>
             </li>
             </ul>
@@ -203,14 +203,14 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="./home.html?category=Marketer">
-                                        <i class="fas fa-project-diagram text-orange pr-2"></i>
+                                        <i class="fas fa-crosshairs text-orange pr-2"></i>
                                         <p class="d-inline-block text-dark font-weight-bold">Marketer</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="./home.html?category=Data Analyst">
                                         <i class="fas fa-chart-line text-orange pr-2"></i>
-                                        <p class="d-inline-block text-dark font-weight-bold">Data Analyst</p>
+                                        <p class="d-inline-block text-dark font-weight-bold">Analyst</p>
                                     </a>
                                 </li>
                             </ul>
