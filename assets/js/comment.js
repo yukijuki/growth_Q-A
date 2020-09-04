@@ -2,16 +2,16 @@ $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
 });
 
-//jScroll
-var jscrollOption = {
-    loadingHtml: 'now loading',
-    autoTrigger: true,
-    padding: 20,
-    nextSelector: 'a.jscroll-next',
-    contentSelector: '.jscroll'
-}
+// //jScroll
+// var jscrollOption = {
+//     loadingHtml: 'now loading',
+//     autoTrigger: true,
+//     padding: 20,
+//     nextSelector: 'a.jscroll-next',
+//     contentSelector: '.jscroll'
+// }
 
-$('.jscroll').jscroll(jscrollOption);
+// $('.jscroll').jscroll(jscrollOption);
 
 //sidebar
 $(function () {
@@ -27,7 +27,11 @@ $(function () {
 });
 
 
+<<<<<<< HEAD
 // //comment生成
+=======
+//comment生成
+>>>>>>> 94f93c3bf572b06f58e3cedb8af6c7130fa36a66
 // function createComment() {
 //     var comment_a = document.createElement("div");
 //     comment_a.className = "card-body px-1 pb-0";

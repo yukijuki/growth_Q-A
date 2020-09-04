@@ -62,6 +62,9 @@ def test():
 def posts_get():
 
     category = request.args.get('category')
+    
+    if category is None:
+        category = "All"
 
     if category == "All":
         posts = Post.query.order_by(Post.created_at.desc()).all()
