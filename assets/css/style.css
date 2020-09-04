@@ -100,9 +100,12 @@ p {
     box-shadow: 1.5px 3px 5px 3px rgba(71, 135, 209, 0.5);
 }
 
-.btn-post:hover, .btn-post:hover, .btn-post:focus, .btn-comment:hover, .btn-comment:active, .btn-comment:focus{
+.btn-post:hover, .btn-post:hover, .btn-comment:hover, .btn-comment:active{
     background-color: rgba(90, 71, 209, 0.8);
     box-shadow: 1px 1px 1px 1px rgba(71, 135, 209, 0.5);
+}
+.btn-post:focus,.btn-comment:focus{
+    box-shadow: 1.5px 3px 5px 3px rgba(71, 135, 209, 0.5);
 }
 
 .btn-comment{
@@ -270,6 +273,7 @@ fieldset {
 
 .navbar a:not(.btn):not(.dropdown-item) {
     color: #FFFFFF;
+    font-size: 1.2rem;
 }
 
 .navbar .navbar-nav .nav-link:not(.btn) i.now-ui-icons {
@@ -444,6 +448,13 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     font-size: 2rem;
 }
 
+.contact-info{
+    margin-top: 2rem;
+    text-align: center;
+}
+.contact-info p{
+    font-size: 1.2rem;
+}
 
 @media (max-width: 576px){
     .sp-sidebar{
