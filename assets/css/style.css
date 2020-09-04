@@ -447,6 +447,13 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     font-size: 2rem;
 }
 
+.contact-info{
+    margin-top: 2rem;
+    text-align: center;
+}
+.contact-info p{
+    font-size: 1.2rem;
+}
 
 @media (max-width: 576px){
     .sp-sidebar{
