@@ -213,8 +213,39 @@ h2.section-title:after, .h2.section-title:after {
 
 /*レスポンシブ*/
 
-@media (max-width: 768px){
+@media (max-width: 767px){
     /*スマートフォン*/
+    .banner_part {
+        background-image: url(../img/growthQnA_SPheader.png);
+        margin-top: 61px;
+        height: 100vh;
+    }
+    .banner_part .banner_text h5 {
+        font-size: 1rem;
+        color: white;
+    }
+    .banner_part .banner_text h1 {
+        font-size: 2.2rem;
+        margin-bottom: 16px;
+        color: white;
+    }
+    .banner_part .banner_text h4 {
+        color: white;
+        font-size: 1.1rem;
+    }
+    .banner_part .banner_text p {
+        font-size: .7rem;
+        line-height: 1.8;
+        color: white;
+    }
+    .btn-start {
+        width: 70%;
+        font-size: .9rem;
+        box-shadow: 1.5px 3px 5px 3px rgba(71, 135, 209, 0.5);
+        margin-left: .5rem;
+        margin-top: 3rem!important;
+        border-radius: 2rem;
+    }
 }
 
 @media only screen and (max-width: 991px) and (min-width: 768px){
