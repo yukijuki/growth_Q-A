@@ -84,10 +84,14 @@ async function comments_post_func() {
     }
 
     const post_id = params['post_id'];
-    console.log(post_id);
+    console.log("post_id", post_id);
 
-    const name = document.getElementById("nickname").value;
-    const text = document.getElementById("commenttext").value;
+    var name = document.getElementById("nickname").value;
+    var text = document.getElementById("commenttext").value;
+
+    if (!name) {
+        name = "匿名"
+    }
 
     console.log(post_id, text, name);
 

@@ -1,12 +1,10 @@
 
-function like_post_api() {
-    const url = "http://127.0.0.1:5000/posts_post";
+function like_post_api(uuid, comment_id) {
+    const url = "http://127.0.0.1:5000/like_post";
     
     var data = {
-        "email": email,
-        "title": title,
-        "text": text,
-        "category": category
+        "user_id": uuid,
+        "comment_id": comment_id
     }
 
     return fetch(url, {
@@ -26,15 +24,22 @@ function like_post_api() {
         });
 }
 
-function likePost(response){
+function likePost(response, id){
 
+    var title = document.createTextNode(response["comment_id"]);
+    document.getElementById(id).appendChild(title);
 
 }
 
-async function like_post_func() {
+async function like_post_func(id) {
 
-    const response = await like_post_api()
+    var comment_id = id.slice(11);
+    console.log("comment_id for like", comment_id);
+
+    var uuid = localStorage.getItem('uuid')
+
+    const response = await like_post_api(uuid, comment_id)
     console.log("APIresponse", response);
 
-    likePost(response);
+    //likePost(response, id);
 }

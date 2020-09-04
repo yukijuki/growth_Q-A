@@ -124,6 +124,7 @@ def posts_post():
 def comments_get():
 
     post_id = request.args.get('post_id')
+    user_id = request.args.get('user_id')
 
     post = Post.query.filter_by(post_id=post_id).filter_by(is_active=True).first()
     comments = Comment.query.filter_by(post_id=post_id).filter_by(is_active=True).order_by(Comment.created_at.desc()).all()
@@ -138,19 +139,21 @@ def comments_get():
     response.append(post)
 
     for comment in comments:
-        # like = Like.query.filter_by(comment_id=comment.comment_id).filter_by(like=True).all()
-        # like_bool = Like.query.filter_by(comment_id=comment.comment_id).filter_by(like=True).filter_by(user_id=user_id).first()
+        like = Like.query.filter_by(comment_id=comment.comment_id).filter_by(like=True).all()
+        like_bool = Like.query.filter_by(comment_id=comment.comment_id).filter_by(like=True).filter_by(user_id=user_id).first()
         
-        # if like_bool:
-        #     like_bool_judge = True
-
+        if like_bool:
+            like_bool_judge = True
+        else:
+            like_bool_judge = False
+            
         comment_data = {
 
             "comment_id": comment.comment_id,
             "name": comment.name,
-            "text": comment.text
-            # "like": len(likes),
-            # "likes": like_bool_judge
+            "text": comment.text,
+            "like": len(like),
+            "judge": like_bool_judge
 
         }
 
@@ -187,24 +190,44 @@ def comments_post():
 
     return Response(response=json.dumps(response_comment), status=200)
     
-@app.route("/comments_like", methods=["POST"])
-def comments_like():
+@app.route("/like_post", methods=["POST"])
+def like_post():
 
     like_id = str(uuid.uuid4())
-    comment_id = request.args.get('comment_id')
-    user_id = request.args.get('user_id')
-        
-    like = Like(
-        like_id = like_id,
-        comment_id = comment_id,
-        user_id = user_id,
-        created_at=datetime.datetime.now()
-    )
+    comment_id = request.json['comment_id']
+    user_id = request.json['user_id']
 
-    db.session.add(like)
-    db.session.commit()
+    like_bool = Like.query.filter_by(comment_id=comment_id).filter_by(user_id=user_id).first()
+    print(like_bool)
+    if like_bool:
+        db.session.delete(like_bool)
+        db.session.commit()
 
-    return  json.dumps(like)
+        data = {
+            "comment_id": comment_id,
+            "action": "delete"
+        }
+
+        return Response(response=json.dumps(data), status=200)
+
+    else:
+        like = Like(
+            like_id = like_id,
+            comment_id = comment_id,
+            user_id = user_id,
+            like = True,
+            created_at=datetime.datetime.now()
+        )
+
+        db.session.add(like)
+        db.session.commit()
+
+        data = {
+            "comment_id": comment_id,
+            "action": "add"
+        }
+
+        return Response(response=json.dumps(data), status=200)
 
 if __name__ == "__main__":
     app.run(debug=True)

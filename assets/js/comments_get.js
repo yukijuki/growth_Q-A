@@ -1,6 +1,6 @@
 
-function comments_get_api(post_id) {
-    var url = "http://127.0.0.1:5000/comments_get?post_id="+post_id
+function comments_get_api(post_id, uuid) {
+    var url = "http://127.0.0.1:5000/comments_get?post_id="+post_id+"&user_id="+uuid
 
     return fetch(url, {
         method: 'GET',
@@ -57,16 +57,18 @@ function createComments(response){
     var like_button = document.createElement("button");
     like_button.className = "btn-like btn btn-group-lg bg-orange btn-block text-white rounded-pill py-1 mt-0 mr-3 float-right";
     like_button.id = "like-button"+response["comment_id"];
+    like_button.setAttribute("onclick", "like_post_func(this.id);");
+
     document.getElementById("like-button-area"+response["comment_id"]).appendChild(like_button);
 
-    var like_buttontext = document.createTextNode("Like"); //like num add here
+    var like_buttontext = document.createTextNode("Like"+" "+response["like"]); //like num add here
     document.getElementById("like-button"+response["comment_id"]).appendChild(like_buttontext);
 }
 
 async function comments_get_func() {
 
     login_verification();
-    
+
     /// Get parameter for category    
     var params = {};
     var query = window.location.href.split("?")[1];
@@ -79,9 +81,11 @@ async function comments_get_func() {
     }
 
     const post_id = params['post_id'];
-    console.log(post_id);
+    console.log("post_id", post_id);
 
-    const response = await comments_get_api(post_id);
+    var uuid = localStorage.getItem('uuid')
+
+    const response = await comments_get_api(post_id, uuid);
     console.log("APIresponse", response);
 
     var title = document.createTextNode(response[0]["title"]);
