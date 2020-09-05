@@ -1,6 +1,6 @@
 
 function posts_post_api(email, title, text, category) {
-    const url = "https://growthqa.du.r.appspot.com/posts_post";
+    const url = "http://127.0.0.1:5000/posts_post";
     
     console.log("posturl", url)
 
