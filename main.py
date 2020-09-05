@@ -8,13 +8,13 @@ import uuid
 
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///site.db"
-app.config["SECRET_KEY"] = "super-secret"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('SQLALCHEMY_DATABASE_URI')
+app.config["SECRET_KEY"] = os.environ.get('SECRET_KEY')
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 app.config["JSON_AS_ASCII"] = False
 
 
-app.debug = True
+app.debug = os.environ.get('IS_DEBUG')
 db = SQLAlchemy(app)
 
 CORS(app)
@@ -107,14 +107,14 @@ def posts_get():
     return  Response(response=json.dumps(response_post), status=200)
 
 
-@app.route("/posts_post", methods=["GET", "POST"])
+@app.route("/posts_post", methods=["POST"])
 def posts_post():
 
     post_id = str(uuid.uuid4())
-    email = request.args.get('email')
-    title = request.args.get('title')
-    text = request.args.get('text')
-    category = request.args.get('category')
+    email = request.json['email']
+    title = request.json['title']
+    text = request.json['text']
+    category = request.json['category']
 
     post = Post(
         post_id = post_id,

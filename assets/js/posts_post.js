@@ -1,21 +1,23 @@
 
 function posts_post_api(email, title, text, category) {
-    const url = "https://growthqa.du.r.appspot.com/posts_post?email="+email+"&title="+title+"&text="+text+"&category="+category;
+    const url = "https://growthqa.du.r.appspot.com/posts_post";
     
     console.log("posturl", url)
-    // var data = {
-    //     "email": email,
-    //     "title": title,
-    //     "text": text,
-    //     "category": category
-    // }
+
+    var data = {
+        "email": email,
+        "title": title,
+        "text": text,
+        "category": category
+    }
 
     return fetch(url, {
         method: 'POST',
         headers: {
             "Access-Control-Allow-Origin": "*",
             "Content-type": "application/json"
-        }
+        },
+        body: JSON.stringify(data)
       })
         .then(response => {
             if (!response.ok) {
