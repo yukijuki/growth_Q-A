@@ -107,7 +107,7 @@ def posts_get():
     return  Response(response=json.dumps(response_post), status=200)
 
 
-@app.route("/posts_post", methods=["POST"])
+@app.route("/posts_post", methods=["GET", "POST"])
 def posts_post():
 
     post_id = str(uuid.uuid4())
@@ -182,7 +182,7 @@ def comments_get():
     return  Response(response=json.dumps(response), status=200)
 
 
-@app.route("/comments_post", methods=["POST"])
+@app.route("/comments_post", methods=["GET", "POST"])
 def comments_post():
 
     comment_id = str(uuid.uuid4())
