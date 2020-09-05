@@ -133,7 +133,8 @@ def comments_get():
 
     post = {
         "title": post.title,
-        "text": post.text
+        "text": post.text,
+        "comments_num": len(comments)
     }
 
     response.append(post)
@@ -146,7 +147,7 @@ def comments_get():
             like_bool_judge = True
         else:
             like_bool_judge = False
-            
+
         comment_data = {
 
             "comment_id": comment.comment_id,

@@ -24,26 +24,34 @@ function like_post_api(uuid, comment_id) {
         });
 }
 
-function likePost(response, id){
+function likePost(response, comment_id){
 
-    var like_text = document.getElementById(id).innerHTML;
-
-    var text = like_text.slice(0, -1); //except for lastword
-    var num = like_text.slice(-1); //lastword
+    var judge;
+    var num_space = "like_num_p"+comment_id
+    var num = document.getElementById(num_space).innerHTML;
 
     var add_num;
+
     if (response["action"] == "delete"){
         add_num = Number(num) - 1
     } else {
         add_num = Number(num) + 1
     }
 
-    var title = document.createTextNode(text + add_num);
+    if(response["action"] == "delete") {
+        judge = "Like"
+    } else {
+        judge = "Unlike"
+    }
 
-    var target = document.getElementById(id)
-    target.innerHTML = text + add_num
-    //like_button.className = "btn-like btn btn-group-lg btn-unlike btn-block text-white rounded-pill py-1 mt-0 mr-3 float-right";
+    //ライクの数値を変更
+    var target = document.getElementById(num_space);
+    target.innerHTML = add_num;
 
+    //ライクの文字を変更
+    var like_text = "like-button"+comment_id
+    var like = document.getElementById(like_text);
+    like.innerHTML = judge;
 
 }
 
@@ -57,5 +65,5 @@ async function like_post_func(id) {
     const response = await like_post_api(uuid, comment_id)
     console.log("APIresponse", response);
     //location.reload();
-    likePost(response, id);
+    likePost(response, comment_id);
 }

@@ -19,6 +19,7 @@ function comments_get_api(post_id, uuid) {
 }
 
 function createComments(response){
+    var judge;
 
     var comment_a = document.createElement("div");
     comment_a.className = "card mx-auto bg-white p-2";
@@ -49,6 +50,20 @@ function createComments(response){
     document.getElementById("comment-card-text"+response["comment_id"]).appendChild(comment_ptext);
 
 
+    var like_num_div = document.createElement("div");
+    like_num_div.className = "like-count";
+    like_num_div.id = "like-count"+response["comment_id"];
+    document.getElementById(response["comment_id"]).appendChild(like_num_div);
+
+    var like_num_p = document.createElement("p");
+    like_num_p.className = "text-dark py-1 mt-0 mr-3 float-right";
+    like_num_p.id = "like_num_p"+response["comment_id"];
+    document.getElementById("like-count"+response["comment_id"]).appendChild(like_num_p);
+
+    var like_num_ptext = document.createTextNode(response["like"]);
+    document.getElementById("like_num_p"+response["comment_id"]).appendChild(like_num_ptext);
+
+
     var comment_div = document.createElement("div");
     comment_div.className = "like-button-area";
     comment_div.id = "like-button-area"+response["comment_id"];
@@ -62,7 +77,12 @@ function createComments(response){
 
     document.getElementById("like-button-area"+response["comment_id"]).appendChild(like_button);
 
-    var like_buttontext = document.createTextNode("Like"+" "+response["like"]); //like num add here
+    if(response["judge"] == true) {
+        judge = "Unlike"
+    } else {
+        judge = "Like"
+    }
+    var like_buttontext = document.createTextNode(judge); //like num add here
     document.getElementById("like-button"+response["comment_id"]).appendChild(like_buttontext);
 }
 
@@ -94,6 +114,16 @@ async function comments_get_func() {
 
     var text = document.createTextNode(response[0]["text"]);
     document.getElementById("comment-p").appendChild(text);
+
+
+    //タイトル・コメントカードのコメント数の変更
+    var comment_h5 = document.createElement("h5");
+    comment_h5.className = "d-inline-block my-auto pl-2 text-orange";
+    comment_h5.id = "top-card-title_text";
+    document.getElementById("top-card-title").appendChild(comment_h5);
+
+    var text = document.createTextNode(response[0]["comments_num"]);
+    document.getElementById("top-card-title_text").appendChild(text);
 
     for (var i = 1; i < response.length; i++) {
         createComments(response[i]);

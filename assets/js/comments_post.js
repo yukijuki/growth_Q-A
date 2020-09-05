@@ -66,8 +66,15 @@ function createComment(response){
     like_button.id = "like-button"+response["comment_id"];
     document.getElementById("like-button-area"+response["comment_id"]).appendChild(like_button);
 
-    var like_buttontext = document.createTextNode("Like"); //like num add here
+    var like_buttontext = document.createTextNode("Like");
     document.getElementById("like-button"+response["comment_id"]).appendChild(like_buttontext);
+
+    //タイトル・コメントカードのコメント数の変更
+    var comment_num = document.getElementById("top-card-title_text").innerHTML;
+    console.log("comment_num", comment_num)
+    var new_comment_num = Number(comment_num) + 1
+    var target = document.getElementById("top-card-title_text")
+    target.innerHTML = new_comment_num;
 }
 
 async function comments_post_func() {
