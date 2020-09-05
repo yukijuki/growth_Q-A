@@ -107,7 +107,7 @@ def posts_get():
     return  Response(response=json.dumps(response_post), status=200)
 
 
-@app.route("/posts_post", methods=["POST"])
+@app.route("/posts_post", methods=["GET"])
 def posts_post():
 
     post_id = str(uuid.uuid4())
