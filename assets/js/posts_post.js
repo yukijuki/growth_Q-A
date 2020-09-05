@@ -1,7 +1,8 @@
 
 function posts_post_api(email, title, text, category) {
-    const url = "https://growthqa.du.r.appspot.com/posts_post?email="+email+"&title="+title+"&text="+text+"&category="+category;
+    const url = "http://127.0.0.1:5000/posts_post?email="+email+"&title="+title+"&text="+text+"&category="+category;
     
+    console.log("posturl", url)
     // var data = {
     //     "email": email,
     //     "title": title,
@@ -10,7 +11,7 @@ function posts_post_api(email, title, text, category) {
     // }
 
     return fetch(url, {
-        method: 'GET',
+        method: 'POST',
         headers: {
             "Access-Control-Allow-Origin": "*",
             "Content-type": "application/json"
