@@ -1,6 +1,6 @@
 
 function comments_get_api(post_id, uuid) {
-    var url = "http://127.0.0.1:5000/comments_get?post_id="+post_id+"&user_id="+uuid
+    var url = "https://growthqa.du.r.appspot.com/comments_get?post_id="+post_id+"&user_id="+uuid
 
     return fetch(url, {
         method: 'GET',

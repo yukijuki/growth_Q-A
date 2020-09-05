@@ -111,10 +111,10 @@ def posts_get():
 def posts_post():
 
     post_id = str(uuid.uuid4())
-    email = request.json['email']
-    title = request.json['title']
-    text = request.json['text']
-    category = request.json['category']
+    email = request.args.get('email')
+    title = request.args.get('title')
+    text = request.args.get('text')
+    category = request.args.get('category')
 
     post = Post(
         post_id = post_id,

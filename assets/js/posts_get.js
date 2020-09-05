@@ -2,7 +2,7 @@
 function posts_get_api(category) {
     var url = "https://growthqa.du.r.appspot.com/posts_get"
     if(category) {
-        var url = "http://127.0.0.1:5000/posts_get?category="+category
+        var url = "https://growthqa.du.r.appspot.com/posts_get?category="+category
     }
     console.log(url)
     return fetch(url, {

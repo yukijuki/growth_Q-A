@@ -1,21 +1,20 @@
 
 function posts_post_api(email, title, text, category) {
-    const url = "http://127.0.0.1:5000/posts_post";
+    const url = "http://127.0.0.1:5000/posts_post?email="+email+"&title="+title+"&text="+text+"&category="+category;
     
-    var data = {
-        "email": email,
-        "title": title,
-        "text": text,
-        "category": category
-    }
+    // var data = {
+    //     "email": email,
+    //     "title": title,
+    //     "text": text,
+    //     "category": category
+    // }
 
     return fetch(url, {
         method: 'POST',
         headers: {
             "Access-Control-Allow-Origin": "*",
             "Content-type": "application/json"
-        },
-        body: JSON.stringify(data)
+        }
       })
         .then(response => {
             if (!response.ok) {
