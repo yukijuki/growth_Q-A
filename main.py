@@ -55,7 +55,45 @@ class Like(db.Model):
 
 @app.route("/")
 def test():
-    return "test verified"
+    return "Running"
+
+@app.route("/test", methods=["GET"])
+def test1():
+    posts = Post.query.order_by(Post.created_at.desc()).all()
+    
+    response_post = []
+
+    for post in posts:
+
+        post_data = {
+            "post_id": post.post_id,
+            "category": post.category,
+            "title": post.title,
+            "text": post.text
+        }
+
+        response_post.append(post_data)
+
+    return Response(response=json.dumps(response_post), status=200)
+
+@app.route("/test2", methods=["GET"])
+def test2():
+    posts = Post.query.order_by(Post.created_at.desc()).all()
+    
+    response_post = []
+
+    for post in posts:
+
+        post_data = {
+            "post_id": post.post_id,
+            "category": post.category,
+            "title": post.title,
+            "text": post.text
+        }
+
+        response_post.append(post_data)
+
+    return json.dumps(response_post)
 
 # -------------------Post page-------------------
 @app.route("/posts_get", methods=["GET"])
