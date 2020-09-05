@@ -9,6 +9,7 @@ import uuid
 app = Flask(__name__)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///site.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://master@server/db"
 app.config["SECRET_KEY"] = "super-secret"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 app.config["JSON_AS_ASCII"] = False
