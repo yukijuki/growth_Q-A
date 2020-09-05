@@ -1,5 +1,2 @@
 runtime: python37
 
-env_variables:
-    SQLALCHEMY_DATABASE_URI: mysql+pymysql://master:@/growth?unix_socket=cloudsql/growthdb
-    SECRET_KEY: be5c7da4f534ba6900701f138a37dd41ba68d57b

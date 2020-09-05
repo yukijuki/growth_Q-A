@@ -9,8 +9,8 @@ import os
 
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('SQLALCHEMY_DATABASE_URI')
-app.config["SECRET_KEY"] = os.environ.get('SECRET_KEY')
+app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql+pymysql://master:@/growth?unix_socket=cloudsql/growthdb'
+app.config["SECRET_KEY"] = '34a7962212abe169c982e0999094a8a486cc4710'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 app.config["JSON_AS_ASCII"] = False
 
