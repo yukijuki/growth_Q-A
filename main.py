@@ -5,8 +5,6 @@ import datetime
 import json
 import uuid
 import os
-import pymysql
-
 
 app = Flask(__name__)
 
