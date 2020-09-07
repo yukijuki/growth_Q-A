@@ -1,6 +1,6 @@
 
 function like_post_api(uuid, comment_id) {
-    const url = "https://growthqa.du.r.appspot.com/posts_post/like_post";
+    const url = "https://growthqa.du.r.appspot.com/like_post";
     
     var data = {
         "user_id": uuid,

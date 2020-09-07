@@ -1,10 +1,13 @@
 from flask import Flask, request, session, after_this_request, jsonify, Response
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS, cross_origin
+from threading import Thread
+from flask_mail import Mail, Message
 import datetime
 import json
 import uuid
 import os
+
 
 app = Flask(__name__)
 
@@ -13,10 +16,25 @@ app.config["SECRET_KEY"] = '34a7962212abe169c982e0999094a8a486cc4710'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 app.config["JSON_AS_ASCII"] = False
 
+#flaskemail
+app.config['DEBUG'] = True
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+#app.config['MAIL_PORT'] = 587 if ur using TLS
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_USERNAME'] = 'preshot.info@gmail.com'
+app.config['MAIL_PASSWORD'] = 'vwxyvzweofqhlono'
+app.config['MAIL_DEFAULT_SENDER'] = ('Preshotの通知','preshot.info@gmail.com')
+app.config['MAIL_MAX_EMAILS'] = False
+app.config['MAIL_ASCII_ATTACHMENTS'] = False
+
 app.debug = os.environ.get('IS_DEBUG')
 db = SQLAlchemy(app)
+mail = Mail(app)
 
 CORS(app)
+
 
 # Define Models
 
@@ -50,7 +68,11 @@ class Like(db.Model):
     created_at = db.Column(db.DateTime())
 
 # db.drop_all()
-db.create_all()
+# db.create_all()
+
+def send_email_thread(msg):
+    with app.app_context():
+        mail.send(msg)
 
 @app.route("/")
 def test():
