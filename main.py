@@ -142,6 +142,8 @@ def posts_post():
 
     post_id = str(uuid.uuid4())
     email = request.json['email']
+    if email is None:
+        email = "email"
     title = request.json['title']
     text = request.json['text']
     category = request.json['category']
