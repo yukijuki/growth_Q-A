@@ -25,7 +25,7 @@ db = sqlalchemy.create_engine(
         password=wegrowth,
         database=growthqa,
         query={
-            'unix_socket': '/cloudsql/{}'.format(growthqa:asia-northeast3:growthqa)
+            'unix_socket': '/cloudsql/{}'.format(growthqa:'asia-northeast3:growthqa')
         }
     ),
 
