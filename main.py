@@ -5,7 +5,7 @@ import datetime
 import json
 import uuid
 import os
-
+import pymysql.cursors
 
 app = Flask(__name__)
 
