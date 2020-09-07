@@ -1,6 +1,6 @@
 
 function comments_post_api(post_id, text, name) {
-    const url = "http://127.0.0.1:5000/comments_post";
+    const url = "https://growthqa.du.r.appspot.com/comments_post";
     
     var data = {
         "post_id": post_id,
