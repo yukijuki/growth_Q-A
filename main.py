@@ -5,31 +5,19 @@ import datetime
 import json
 import uuid
 import os
-import pymysql.cursors
+import pymysql
+
 
 app = Flask(__name__)
 
-#app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql+pymysql://root:@/growth?unix_socket=cloudsql/growthqa'
+app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql+pymysql://master:wegrowth@growth?unix_socket=cloudsql/growthqa:asia-northeast3:growthqa'
 app.config["SECRET_KEY"] = '34a7962212abe169c982e0999094a8a486cc4710'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 app.config["JSON_AS_ASCII"] = False
 
 
 app.debug = os.environ.get('IS_DEBUG')
-#db = SQLAlchemy(app)
-
-db = sqlalchemy.create_engine(
-    sqlalchemy.engine.url.URL(
-        drivername='mysql+pymysql',
-        username=master,
-        password=wegrowth,
-        database=growthqa,
-        query={
-            'unix_socket': '/cloudsql/{}'.format(growthqa:'asia-northeast3:growthqa')
-        }
-    ),
-
-)
+db = SQLAlchemy(app)
 
 CORS(app)
 
