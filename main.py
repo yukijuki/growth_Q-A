@@ -11,7 +11,8 @@ import os
 
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = 'postgres+pg8000://master:wegrowth@growth?unix_socket=/cloudsql/growthqa:asia-northeast3:growthpg/.s.PGSQL.5432'
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///site.db"
+#app.config["SQLALCHEMY_DATABASE_URI"] = 'postgres+psycopg2://postgres:wegrowth@34.64.222.230/growth?host=/cloudsql/growthqa:asia-northeast3:growthpg'
 app.config["SECRET_KEY"] = '34a7962212abe169c982e0999094a8a486cc4710'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 app.config["JSON_AS_ASCII"] = False
@@ -28,6 +29,9 @@ app.config['MAIL_PASSWORD'] = 'vwxyvzweofqhlono'
 app.config['MAIL_DEFAULT_SENDER'] = ('Preshotの通知','preshot.info@gmail.com')
 app.config['MAIL_MAX_EMAILS'] = False
 app.config['MAIL_ASCII_ATTACHMENTS'] = False
+
+#----- in case leaving ----
+#app.config["SQLALCHEMY_DATABASE_URI"] = 'postgres+psycopg2://postgres:wegrowth@postgres?unix_sock=/cloudsql/growthqa:asia-northeast3:growthpg/.s.PGSQL.5432'
 
 app.debug = os.environ.get('IS_DEBUG')
 db = SQLAlchemy(app)
@@ -67,19 +71,24 @@ class Like(db.Model):
     like = db.Column(db.Boolean, default=True)
     created_at = db.Column(db.DateTime())
 
-# db.drop_all()
-# db.create_all()
+#db.drop_all()
+#db.create_all()
+
+#------- funcs ---------
 
 def send_email_thread(msg):
     with app.app_context():
         mail.send(msg)
 
+#------- APIs ----------
 @app.route("/")
 def test():
     return "Running"
 
-@app.route("/test", methods=["GET"])
+@app.route("/reset", methods=["GET"])
 def test1():
+    db.drop_all()
+    db.create_all()
     posts = Post.query.order_by(Post.created_at.desc()).all()
     
     response_post = []
@@ -228,6 +237,16 @@ def comments_post():
         "name": name,
         "text": text
     }
+
+    post = Post.query.filter_by(post_id=post_id).filter_by(is_active=True).first()
+
+    with app.app_context():
+        msg = Message('Growth Confereceからの通知', recipients=[email])
+        msg.html = "投稿の回答が来ています。<br><br>"\
+        "今すぐgrowthで回答を確認しましょう！<br>{0}<br>"\
+        "----------------------------<br>運営：team growth conference<br>Email：growthconf.info@gmail.com<br>HP：https://storage.googleapis.com/growth_conf/template/home.html <br>----------------------------".format(websiteurl)
+        thr = Thread(target=send_email_thread, args=[msg])
+        thr.start()
 
     return Response(response=json.dumps(response_comment), status=200)
     
