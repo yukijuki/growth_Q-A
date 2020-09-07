@@ -59,6 +59,10 @@ function createComments(response){
     like_num_p.className = "text-dark py-1 mt-0 mr-3 float-right";
     like_num_p.id = "like_num_p"+response["comment_id"];
     document.getElementById("like-count"+response["comment_id"]).appendChild(like_num_p);
+    
+    if(response["like"] == undefined){
+        response["like"] = 0
+    }
 
     var like_num_ptext = document.createTextNode(response["like"]);
     document.getElementById("like_num_p"+response["comment_id"]).appendChild(like_num_ptext);
