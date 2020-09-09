@@ -247,7 +247,7 @@ def comments_post():
         msg = Message('Growth Confereceからの通知', recipients=[post.email])
         msg.html = "投稿の回答が来ています。<br><br>"\
         "今すぐgrowthで回答を確認しましょう！<br>{0}<br><br>"\
-        "----------------------------<br>運営：team growth conference<br>Email：growthconf.info@gmail.com<br>HP：https://storage.googleapis.com/growth_conf/index.html <br>----------------------------".format(websiteurl)
+        "----------------------------<br>運営：team growth conference<br>Email：growthconf.info@gmail.com<br>HP：https://storage.googleapis.com/growth-static/index.html <br>----------------------------".format(websiteurl)
         thr = Thread(target=send_email_thread, args=[msg])
         thr.start()
 
