@@ -26,7 +26,7 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 app.config['MAIL_USERNAME'] = 'preshot.info@gmail.com'
 app.config['MAIL_PASSWORD'] = 'vwxyvzweofqhlono'
-app.config['MAIL_DEFAULT_SENDER'] = ('Growth Confの通知','growthconf.info@gmail.com')
+app.config['MAIL_DEFAULT_SENDER'] = ('Growth Conf.の通知','growthconf.info@gmail.com')
 app.config['MAIL_MAX_EMAILS'] = False
 app.config['MAIL_ASCII_ATTACHMENTS'] = False
 
@@ -244,10 +244,10 @@ def comments_post():
     websiteurl = "https://storage.googleapis.com/growth_static/template/comment.html?post_id="+post_id
 
     with app.app_context():
-        msg = Message('Growth Confereceからの通知', recipients=[post.email])
+        msg = Message('Growth Conf.からの通知', recipients=[post.email])
         msg.html = "投稿の回答が来ています。<br><br>"\
-        "今すぐgrowthで回答を確認しましょう！<br><br>{0}<br><br><br>"\
-        "----------------------------<br>運営：team growth conference<br>Email：growthconf.info@gmail.com<br>HP：https://storage.googleapis.com/growth-static/index.html <br>----------------------------".format(websiteurl)
+        "今すぐGrowth Conf.で回答を確認しましょう！<br><br>{0}<br><br><br>"\
+        "----------------------------<br>運営：team Growth Conf. <br>Email：growthconf.info@gmail.com<br>HP：https://storage.googleapis.com/growth-static/index.html <br>----------------------------".format(websiteurl)
         thr = Thread(target=send_email_thread, args=[msg])
         thr.start()
 
