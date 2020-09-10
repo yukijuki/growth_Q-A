@@ -241,12 +241,12 @@ def comments_post():
     }
 
     post = Post.query.filter_by(post_id=post_id).filter_by(is_active=True).first()
-    websiteurl = "https://storage.googleapis.com/growth_conf/template/comment.html?post_id="+post_id
+    websiteurl = "https://storage.googleapis.com/growth_static/template/comment.html?post_id="+post_id
 
     with app.app_context():
         msg = Message('Growth Confereceからの通知', recipients=[post.email])
         msg.html = "投稿の回答が来ています。<br><br>"\
-        "今すぐgrowthで回答を確認しましょう！<br>{0}<br><br>"\
+        "今すぐgrowthで回答を確認しましょう！<br><br>{0}<br><br><br>"\
         "----------------------------<br>運営：team growth conference<br>Email：growthconf.info@gmail.com<br>HP：https://storage.googleapis.com/growth-static/index.html <br>----------------------------".format(websiteurl)
         thr = Thread(target=send_email_thread, args=[msg])
         thr.start()
