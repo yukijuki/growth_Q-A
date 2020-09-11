@@ -144,7 +144,7 @@ def posts_post():
     email = request.json['email']
 
     if email is None:
-        email = "noone@gmail.com"
+        email = "sample@gmail.com"
 
     title = request.json['title']
     text = request.json['text']
@@ -183,6 +183,9 @@ def comments_get():
     comments = Comment.query.filter_by(post_id=post_id).filter_by(is_active=True).order_by(Comment.created_at.desc()).all()
 
     response = []
+
+    if post["title"] is None:
+        post["title"] == "タイトルなし"
 
     post = {
         "title": post.title,
