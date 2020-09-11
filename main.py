@@ -3,6 +3,10 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS, cross_origin
 from threading import Thread
 from flask_mail import Mail, Message
+
+#from flask_script import Manager
+#from flask_migrate import Migrate, MigrateCommand
+
 import datetime
 import json
 import uuid
@@ -30,12 +34,15 @@ app.config['MAIL_DEFAULT_SENDER'] = ('Growth Conf.の通知','growthconf.info@gm
 app.config['MAIL_MAX_EMAILS'] = False
 app.config['MAIL_ASCII_ATTACHMENTS'] = False
 
-#----- in case leaving ----
-#app.config["SQLALCHEMY_DATABASE_URI"] = 'postgres+psycopg2://postgres:wegrowth@postgres?unix_sock=/cloudsql/growthqa:asia-northeast3:growthpg/.s.PGSQL.5432'
-
 #app.debug = os.environ.get('IS_DEBUG')
+
 db = SQLAlchemy(app)
 mail = Mail(app)
+
+#--------- migrate ------------
+# migrate = Migrate(app, db)
+# manager = Manager(app)
+# manager.add_command('db', MigrateCommand)
 
 CORS(app)
 
@@ -70,9 +77,6 @@ class Like(db.Model):
     user_id = db.Column(db.String(80), nullable=False)
     like = db.Column(db.Boolean, default=True)
     created_at = db.Column(db.DateTime())
-
-#db.drop_all()
-#db.create_all()
 
 #------- funcs ---------
 
@@ -128,7 +132,7 @@ def posts_get():
         post_data = {
             "post_id": post.post_id,
             "category": post.category,
-            "title": post.title[:20] + " ..",
+            "title": post.title[:25] + " ..",
             "text": post.text[:105] + "...",
         }
 
