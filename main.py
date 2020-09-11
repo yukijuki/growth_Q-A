@@ -142,7 +142,7 @@ def posts_post():
 
     post_id = str(uuid.uuid4())
     email = request.json['email']
-    
+
     if email is None:
         email = "noone@gmail.com"
 
@@ -243,7 +243,7 @@ def comments_post():
     }
 
     post = Post.query.filter_by(post_id=post_id).filter_by(is_active=True).first()
-    websiteurl = "https://storage.googleapis.com/growth_static/template/comment.html?post_id="+post_id
+    websiteurl = "https://storage.googleapis.com/growth-static/template/comment.html?post_id="+post_id
 
     with app.app_context():
         msg = Message('Growth Conf.からの通知', recipients=[post.email])
