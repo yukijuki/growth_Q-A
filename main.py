@@ -21,11 +21,10 @@ app.config["SECRET_KEY"] = '34a7962212abe169c982e0999094a8a486cc4710'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 app.config["JSON_AS_ASCII"] = False
 
-#flaskemail
+#-----flaskemail-------
 app.config['DEBUG'] = True
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
-#app.config['MAIL_PORT'] = 587 if ur using TLS
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 app.config['MAIL_USERNAME'] = 'preshot.info@gmail.com'
