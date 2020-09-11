@@ -184,9 +184,6 @@ def comments_get():
 
     response = []
 
-    if post["title"] is None:
-        post["title"] == "タイトルなし"
-
     post = {
         "title": post.title,
         "text": post.text,
