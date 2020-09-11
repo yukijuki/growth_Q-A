@@ -82,11 +82,11 @@ def send_email_thread(msg):
 
 #------- APIs ----------
 @app.route("/")
-def test():
+def index():
     return "Running"
 
 @app.route("/reset", methods=["GET"])
-def test1():
+def reset():
     db.drop_all()
     db.create_all()
     posts = Post.query.order_by(Post.created_at.desc()).all()
@@ -192,6 +192,8 @@ def comments_get():
 
     response.append(post)
 
+    commment_list = []
+
     for comment in comments:
         like = Like.query.filter_by(comment_id=comment.comment_id).filter_by(like=True).all()
         like_bool = Like.query.filter_by(comment_id=comment.comment_id).filter_by(like=True).filter_by(user_id=user_id).first()
@@ -208,10 +210,15 @@ def comments_get():
             "text": comment.text,
             "like": len(like),
             "judge": like_bool_judge
-
         }
 
-        response.append(comment_data)
+        commment_list.append(comment_data)
+
+    #sorted 
+    sorted_commment_list = sorted(commment_list, key=lambda x:x['like'])
+
+    #extend the comment list to response
+    response.extend(sorted_commment_list)
 
     return  Response(response=json.dumps(response), status=200)
 
@@ -293,6 +300,26 @@ def like_post():
         }
 
         return Response(response=json.dumps(data), status=200)
+
+@app.route("/query_all_posts", methods=["GET"])
+def query_all_posts():
+    
+    posts = Post.query.order_by(Post.created_at.desc()).all()
+    
+    response_post = []
+
+    for post in posts:
+
+        post_data = {
+            "post_id": post.post_id,
+            "category": post.category,
+            "title": post.title,
+            "text": post.text
+        }
+
+        response_post.append(post_data)
+
+    return Response(response=json.dumps(response_post), status=200)
 
 if __name__ == "__main__":
     app.run(debug=True)
