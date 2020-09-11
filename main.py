@@ -88,27 +88,6 @@ def send_email_thread(msg):
 def index():
     return "Running"
 
-@app.route("/reset", methods=["GET"])
-def reset():
-    db.drop_all()
-    db.create_all()
-    posts = Post.query.order_by(Post.created_at.desc()).all()
-    
-    response_post = []
-
-    for post in posts:
-
-        post_data = {
-            "post_id": post.post_id,
-            "category": post.category,
-            "title": post.title,
-            "text": post.text
-        }
-
-        response_post.append(post_data)
-
-    return Response(response=json.dumps(response_post), status=200)
-
 # -------------------Post page-------------------
 @app.route("/posts_get", methods=["GET"])
 def posts_get():
