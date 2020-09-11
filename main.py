@@ -215,7 +215,7 @@ def comments_get():
         commment_list.append(comment_data)
 
     #sorted 
-    sorted_commment_list = sorted(commment_list, key=lambda x:x['like'])
+    sorted_commment_list = sorted(commment_list, reverse=True, key=lambda x:x['like'])
 
     #extend the comment list to response
     response.extend(sorted_commment_list)
