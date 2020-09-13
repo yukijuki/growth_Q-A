@@ -77,6 +77,8 @@ class Like(db.Model):
     like = db.Column(db.Boolean, default=True)
     created_at = db.Column(db.DateTime())
 
+# db.drop_all()
+# db.create_all()
 #------- funcs ---------
 
 def send_email_thread(msg):
@@ -176,31 +178,43 @@ def comments_get():
 
     commment_list = []
 
-    for comment in comments:
-        like = Like.query.filter_by(comment_id=comment.comment_id).filter_by(like=True).all()
-        like_bool = Like.query.filter_by(comment_id=comment.comment_id).filter_by(like=True).filter_by(user_id=user_id).first()
+    try:
+        for comment in comments:
+            like = Like.query.filter_by(comment_id=comment.comment_id).filter_by(like=True).all()
+            like_bool = Like.query.filter_by(comment_id=comment.comment_id).filter_by(like=True).filter_by(user_id=user_id).first()
+            
+            if like_bool:
+                like_bool_judge = True
+            else:
+                like_bool_judge = False
+
+            if comment.email:
+                sns = comment.email
+            else:
+                sns = "匿名"
+
+            comment_data = {
+
+                "comment_id": comment.comment_id,
+                "name": comment.name,
+                "text": comment.text,
+                "sns": sns,
+                "like": len(like),
+                "judge": like_bool_judge
+            }
+
+            commment_list.append(comment_data)
+            
+        #sorted 
+        sorted_commment_list = sorted(commment_list, reverse=True, key=lambda x:x['like'])
+
+        #extend the comment list to response
+        response.extend(sorted_commment_list)
+
+    except Exception:
+        pass
         
-        if like_bool:
-            like_bool_judge = True
-        else:
-            like_bool_judge = False
-
-        comment_data = {
-
-            "comment_id": comment.comment_id,
-            "name": comment.name,
-            "text": comment.text,
-            "like": len(like),
-            "judge": like_bool_judge
-        }
-
-        commment_list.append(comment_data)
-
-    #sorted 
-    sorted_commment_list = sorted(commment_list, reverse=True, key=lambda x:x['like'])
-
-    #extend the comment list to response
-    response.extend(sorted_commment_list)
+    print(len(response))
 
     return  Response(response=json.dumps(response), status=200)
 
@@ -212,11 +226,14 @@ def comments_post():
     text = request.json['text']
     post_id = request.json['post_id']
     name = request.json['name']
-    print(post_id)
+    sns = request.json['sns']
+    if sns is None:
+        sns = "匿名"
 
     comment = Comment(
         comment_id = comment_id,
         post_id = post_id,
+        email = sns,
         name = name,
         text = text,
         created_at=datetime.datetime.now()
@@ -228,6 +245,7 @@ def comments_post():
     response_comment = {
         "comment_id": comment_id,
         "name": name,
+        "sns": sns,
         "text": text
     }
 
@@ -241,6 +259,8 @@ def comments_post():
         "----------------------------<br>運営：team Growth Conf. <br>Email：growthconf.info@gmail.com<br>HP：https://storage.googleapis.com/growth-static/index.html <br>----------------------------".format(websiteurl)
         thr = Thread(target=send_email_thread, args=[msg])
         thr.start()
+
+    print(response_comment)
 
     return Response(response=json.dumps(response_comment), status=200)
     
