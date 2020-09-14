@@ -15,8 +15,8 @@ import os
 
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///site.db"
-#app.config["SQLALCHEMY_DATABASE_URI"] = 'postgres+psycopg2://postgres:wegrowth@34.64.222.230/growth?host=/cloudsql/growthqa:asia-northeast3:growthpg'
+#app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///site.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = 'postgres+psycopg2://postgres:wegrowth@34.64.222.230/growth?host=/cloudsql/growthqa:asia-northeast3:growthpg'
 app.config["SECRET_KEY"] = '34a7962212abe169c982e0999094a8a486cc4710'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 app.config["JSON_AS_ASCII"] = False
