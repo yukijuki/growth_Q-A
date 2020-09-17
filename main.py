@@ -323,19 +323,37 @@ def query_all_posts():
 
     return Response(response=json.dumps(response_post), status=200)
 
-@app.route("/delete_comment", methods=["GET"])
+@app.route("/delete_comment", methods=["POST"])
 def delete_comment():
 
-    comment_id = request.args.get('comment_id')
+    comment_id = request.json['comment_id']
+
+    #end if comment_id is None
+    if comment_id is None:
+        return Response(response={"message":"comment_id missing"}, status=500)
     
     comment = Comment.query.filter_by(comment_id=comment_id).first()
 
     if comment is None:
-        return Response("commnet_id not found try again")
+        return Response(response={"message":"comment nonexising"}, status=500)
     else:
         db.session.delete(comment)
         db.session.commit()
-        return Response("comment deleted sucessfully")
+        return Response(response={"message": "comment deleted"}, status=200)
+
+# @app.route("/delete_post", methods=["POST"])
+# def delete_post():
+
+#     comment_id = request.json['comment_id']
+    
+#     comment = Comment.query.filter_by(comment_id=comment_id).first()
+
+#     if comment is None:
+#         return Response("commnet_id not found try again")
+#     else:
+#         db.session.delete(comment)
+#         db.session.commit()
+#         return Response("comment deleted sucessfully")
 
 if __name__ == "__main__":
     app.run(debug=True)

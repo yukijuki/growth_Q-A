@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+</head>
+<body class="index-page sidebar-collapse">
+    <script type="text/javascript">
+        const url = "https://growthqa.du.r.appspot.com/delete_comment?comment_id";
+        
+        console.log("posturl", url)
+
+        var data = {
+            "category": category
+        }
+
+        return fetch(url, {
+            method: 'POST',
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    return Promise.reject(new Error(`${response.status}: ${response.statusText}`));
+                } else {
+                    return Promise.resolve(response.json());
+                }
+            });
+    }
+    
+    </script>
+</body>
+</html>
