@@ -323,5 +323,17 @@ def query_all_posts():
 
     return Response(response=json.dumps(response_post), status=200)
 
+@app.route("/delete_comment/<comment_id>", methods=["GET", "DELETE"])
+def delete_comment(comment_id):
+    
+    comment = Comment.query.filter_by(comment_id=comment_id).first()
+
+    if comment is None:
+        return Response("commnet_id not found try again")
+    else:
+        db.session.delete(comment)
+        db.session.commit()
+        return Response("comment deleted sucessfully")
+
 if __name__ == "__main__":
     app.run(debug=True)
