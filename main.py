@@ -323,8 +323,10 @@ def query_all_posts():
 
     return Response(response=json.dumps(response_post), status=200)
 
-@app.route("/delete_comment/<comment_id>", methods=["GET", "DELETE"])
-def delete_comment(comment_id):
+@app.route("/delete_comment", methods=["GET", "POST"])
+def delete_comment():
+
+    comment_id = request.args.get('comment_id')
     
     comment = Comment.query.filter_by(comment_id=comment_id).first()
 
