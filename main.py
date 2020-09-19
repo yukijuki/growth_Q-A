@@ -112,8 +112,8 @@ def posts_get():
         post_data = {
             "post_id": post.post_id,
             "category": post.category,
-            "title": post.title[:25] + " ..",
-            "text": post.text[:105] + "...",
+            "title": post.title,
+            "text": post.text
         }
 
         response_post.append(post_data)
